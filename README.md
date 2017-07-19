@@ -30,6 +30,11 @@ def deps do
   [{:kiosk_system_rpi3, github: "letoteteam/kiosk_system_rpi3"}]
 end
 ```
+
+## Building
+
+You will need to have `convert` via [ImageMagick](https://www.imagemagick.org) to build this system.
+
 ## Built-in WiFi Firmware
 
 WiFi modules almost always require proprietary firmware to be loaded for them to work. The
