@@ -43,7 +43,7 @@ defmodule KioskSystemRpi3.Mixfile do
   end
 
   defp package do
-   [maintainers: ["Justin Schneck"],
+   [maintainers: ["Justin Schneck", "Greg Mefford", "Jeff Smith"],
     files: ["LICENSE", "mix.exs", "nerves_defconfig", "nerves.exs", "README.md", "VERSION", "rootfs_overlay", "fwup.conf", "cmdline.txt", "linux-4.4.defconfig", "config.txt", "post-createfs.sh"],
     licenses: ["Apache 2.0"],
     links: %{"Github" => "https://github.com/letoteteam/kiosk_system_rpi3"}]
