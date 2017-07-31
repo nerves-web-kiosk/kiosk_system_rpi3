@@ -1,9 +1,25 @@
 # Changelog
 
-## v0.10.1-dev
+## v0.12.0
 
   * New features
     * Enabled USB_SERIAL and FTDI_SIO support. Needed for connecting with Arduino to the USB ports
+    * The application data partition is now `ext4`. This greatly improves its
+      robustness to corruption. Nerves.Runtime contains code to initialize it on
+      first boot.
+    * Firmware images now contain metadata that can be queried at runtime (see
+      Nerves.Runtime.KV
+
+  * nerves_system_br v0.13.3
+    * OTP 20
+    * erlinit 1.1.4
+    * fwup 0.15.3
+
+## v0.11.0
+
+  * New features
+    * Enabled USB_SERIAL and FTDI_SIO support. Needed for connecting with Arduino to the USB ports
+    * Support for Nerves 0.5.0
 
 ## v0.10.0
 
