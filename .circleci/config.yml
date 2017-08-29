@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: /nerves/build
   docker:
-    - image: nervesproject/nerves:0.13.5
+    - image: letoteteam/kiosk_system_rpi3
   environment:
     ENV: CI
     MIX_ENV: test
@@ -32,7 +32,6 @@ version: 2.0
 jobs:
   build_system:
     <<: *defaults
-    resource_class: large
     steps:
       - checkout
       - <<: *install_elixir
@@ -73,11 +72,11 @@ jobs:
           path: /nerves/deploy/system/artifacts
           destination: system
       - save_cache:
-          key: nerves/build-{{ .Revision }}
+          key: nerves/build-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
           paths:
             - "/nerves/build"
       - save_cache:
-          key: nerves/deploy/system-{{ .Revision }}
+          key: nerves/deploy/system-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
           paths:
             - "/nerves/deploy/system"
 
@@ -88,7 +87,7 @@ jobs:
     working_directory: /nerves/build/test
     steps:
       - restore_cache:
-          key: nerves/build-{{ .Revision }}
+          key: nerves/build-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
       - <<: *install_elixir
       - <<: *install_hex_rebar
       - <<: *install_nerves_bootstrap
@@ -120,7 +119,7 @@ jobs:
           path: /nerves/deploy/test/artifacts
           destination: test
       - save_cache:
-          key: nerves/deploy/test-{{ .Revision }}
+          key: nerves/deploy/test-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
           paths:
             - "/nerves/deploy/test"
 
@@ -133,7 +132,7 @@ jobs:
             apt-get update
             apt-get -y install awscli
       - restore_cache:
-          key: nerves/deploy/test-{{ .Revision }}
+          key: nerves/deploy/test-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
       - deploy:
           name: Publish notification on SNS
           command: aws sns publish --topic-arn arn:aws:sns:us-east-1:991424406598:nerves-test-firmware --message "$(cat /nerves/deploy/test/artifacts/${CIRCLE_SHA1}.json)"
@@ -142,7 +141,7 @@ jobs:
     <<: *defaults
     steps:
       - restore_cache:
-          key: nerves/deploy/system-{{ .Revision }}
+          key: nerves/deploy/system-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
       - run:
           name: Install dependencies
           command: |
@@ -150,7 +149,7 @@ jobs:
             unzip ghr_v0.5.4_linux_amd64.zip
       - run:
           name: "Create Release Notes"
-          command: grep -Pazo "(?s)(## ${CIRCLE_TAG}.\*?)[^#]+" /nerves/deploy/system/CHANGELOG.md > /nerves/deploy/system/RELEASE_NOTES
+          command: grep -Pazo "(?s)(?<=## ${CIRCLE_TAG})[^#]+" CHANGELOG.md > /nerves/deploy/system/RELEASE_NOTES
       - run:
           name: Deploy artifacts to Github
           command: ./ghr -draft -t $GITHUB_TOKEN -u nerves-project -r $CIRCLE_PROJECT_REPONAME -b "$(cat /nerves/deploy/system/RELEASE_NOTES)" -replace $CIRCLE_TAG /nerves/deploy/system/artifacts
