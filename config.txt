@@ -10,10 +10,11 @@ kernel=zImage
 
 # This, along with the Raspberry Pi "x" firmware is need for the camera
 # to work. See Target packages->Hardware handling->Firmware for "x" firmware.
-gpu_mem=128
+gpu_mem=192
 
 # Enable I2C and SPI
 dtparam=i2c_arm=on,spi=on
+dtoverlay=rpi-ft5406
 
 # Comment this in or modify to enable OneWire
 # NOTE: check that the overlay that you specify is in the boot partition or
