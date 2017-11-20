@@ -45,30 +45,44 @@ defmodule KioskSystemRpi3.Mixfile do
 
   defp package do
    [maintainers: ["Justin Schneck", "Greg Mefford", "Jeff Smith"],
-    files: ["LICENSE", "mix.exs", "nerves_defconfig", "README.md", "VERSION", "rootfs_overlay", "fwup.conf", "cmdline.txt", "linux-4.4.defconfig", "config.txt", "post-createfs.sh"],
+    files: package_files(),
     licenses: ["Apache 2.0"],
     links: %{"Github" => "https://github.com/letoteteam/kiosk_system_rpi3"}]
   end
 
-  def nerves_package do
-    [type: :system,
-     compiler: :nerves_package,
-     platform: Nerves.System.BR,
-     platform_config: [
-       defconfig: "nerves_defconfig"
-     ],
-     provider_config: [
-       docker: {"Dockerfile", "kiosk_system_rpi3:0.11.0"}
-     ],
-     checksum: [
-       "nerves_defconfig",
-       "rootfs-additions",
-       "linux-4.4.defconfig",
-       "fwup.conf",
-       "cmdline.txt",
-       "config.txt",
-       "post-createfs.sh",
-       "VERSION"
-     ]]
+  defp nerves_package do
+    [
+      type: :system,
+      version: @version,
+      compiler: :nerves_package,
+      artifact_url: [
+        "https://github.com/letoteteam/#{@app}/releases/download/v#{@version}/#{@app}-v#{@version}.tar.gz",
+      ],
+      platform: Nerves.System.BR,
+      platform_config: [
+        defconfig: "nerves_defconfig"
+      ],
+      provider_config: [
+        docker: {"Dockerfile", "kiosk_system_rpi3:0.11.0"}
+      ],
+      checksum: package_files()
+    ]
+  end
+
+  defp package_files do
+    [
+      "LICENSE",
+      "mix.exs",
+      "README.md",
+      "CHANGELOG.md",
+      "nerves_defconfig",
+      "rootfs_overlay",
+      "linux-4.4.defconfig",
+      "fwup.conf",
+      "cmdline.txt",
+      "config.txt",
+      "post-createfs.sh",
+      "VERSION"
+    ]
   end
 end
