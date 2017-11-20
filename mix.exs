@@ -20,6 +20,7 @@ defmodule KioskSystemRpi3.Mixfile do
      description: description(),
      package: package(),
      deps: deps(),
+     nerves_package: nerves_package(),
      aliases: ["deps.precompile": ["nerves.env", "nerves.precompile", "deps.precompile"],
      "deps.loadpaths":  ["deps.loadpaths", "nerves.loadpaths"]]]
   end
@@ -30,8 +31,8 @@ defmodule KioskSystemRpi3.Mixfile do
 
   defp deps do
     [
-      {:nerves, "~> 0.7"},
-      {:nerves_system_br, "~> 0.13.3"},
+      {:nerves, "~> 0.8"},
+      {:nerves_system_br, "~> 0.15"},
       {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 0.10.0"}
     ]
   end
@@ -44,8 +45,30 @@ defmodule KioskSystemRpi3.Mixfile do
 
   defp package do
    [maintainers: ["Justin Schneck", "Greg Mefford", "Jeff Smith"],
-    files: ["LICENSE", "mix.exs", "nerves_defconfig", "nerves.exs", "README.md", "VERSION", "rootfs_overlay", "fwup.conf", "cmdline.txt", "linux-4.4.defconfig", "config.txt", "post-createfs.sh"],
+    files: ["LICENSE", "mix.exs", "nerves_defconfig", "README.md", "VERSION", "rootfs_overlay", "fwup.conf", "cmdline.txt", "linux-4.4.defconfig", "config.txt", "post-createfs.sh"],
     licenses: ["Apache 2.0"],
     links: %{"Github" => "https://github.com/letoteteam/kiosk_system_rpi3"}]
+  end
+
+  def nerves_package do
+    [type: :system,
+     compiler: :nerves_package,
+     platform: Nerves.System.BR,
+     platform_config: [
+       defconfig: "nerves_defconfig"
+     ],
+     provider_config: [
+       docker: {"Dockerfile", "kiosk_system_rpi3:0.11.0"}
+     ],
+     checksum: [
+       "nerves_defconfig",
+       "rootfs-additions",
+       "linux-4.4.defconfig",
+       "fwup.conf",
+       "cmdline.txt",
+       "config.txt",
+       "post-createfs.sh",
+       "VERSION"
+     ]]
   end
 end
