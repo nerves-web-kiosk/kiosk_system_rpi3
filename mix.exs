@@ -30,11 +30,9 @@ defmodule KioskSystemRpi3.Mixfile do
   end
 
   defp deps do
-    [
-      {:nerves, "~> 0.8"},
-      {:nerves_system_br, "~> 0.15"},
-      {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 0.10.0"}
-    ]
+    [{:nerves, "~> 0.8"},
+     {:nerves_system_br, "~> 0.15.0", runtime: false, app: false},
+     {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 0.10.0"}]
   end
 
   defp description do
