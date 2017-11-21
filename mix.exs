@@ -14,44 +14,26 @@ defmodule KioskSystemRpi3.Mixfile do
     |> String.trim
 
   def project do
-    [app: @app,
-     version: @version,
-     elixir: "~> 1.3",
-     compilers: Mix.compilers ++ [:nerves_package],
-     description: description(),
-     package: package(),
-     deps: deps(),
-     nerves_package: nerves_package(),
-     aliases: ["deps.precompile": ["nerves.env", "nerves.precompile", "deps.precompile"],
-     "deps.loadpaths":  ["deps.loadpaths", "nerves.loadpaths"]]]
+    [
+      app: @app,
+      version: @version,
+      elixir: "~> 1.3",
+      compilers: Mix.compilers ++ [:nerves_package],
+      nerves_package: nerves_package(),
+      description: description(),
+      package: package(),
+      deps: deps(),
+      nerves_package: nerves_package(),
+      aliases: ["deps.precompile": ["nerves.env", "nerves.precompile", "deps.precompile"],
+      "deps.loadpaths":  ["deps.loadpaths", "nerves.loadpaths"]]
+    ]
   end
 
   def application do
     []
   end
 
-  defp deps do
-    [
-      {:nerves, "~> 0.8"},
-      {:nerves_system_br, "~> 0.15.0", runtime: false, app: false},
-      {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 0.10.0"}
-    ]
-  end
-
-  defp description do
-    """
-    Nerves System - Raspberry Pi 3 B Kiosk
-    """
-  end
-
-  defp package do
-   [maintainers: ["Justin Schneck", "Greg Mefford", "Jeff Smith"],
-    files: package_files(),
-    licenses: ["Apache 2.0"],
-    links: %{"Github" => "https://github.com/letoteteam/kiosk_system_rpi3"}]
-  end
-
-  defp nerves_package do
+  def nerves_package do
     [
       type: :system,
       version: @version,
@@ -63,10 +45,30 @@ defmodule KioskSystemRpi3.Mixfile do
       platform_config: [
         defconfig: "nerves_defconfig"
       ],
-      provider_config: [
-        docker: {"Dockerfile", "kiosk_system_rpi3:0.11.0"}
-      ],
       checksum: package_files()
+    ]
+  end
+
+  defp deps do
+    [
+      {:nerves, "~> 0.8", runtime: false},
+      {:nerves_system_br, "~> 0.15.0", runtime: false, app: false},
+      {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 0.12.0", runtime: false, app: false}
+    ]
+  end
+
+  defp description do
+    """
+    Nerves System - Raspberry Pi 3 B Kiosk
+    """
+  end
+
+  defp package do
+    [
+      maintainers: ["Justin Schneck", "Greg Mefford", "Jeff Smith"],
+      files: package_files(),
+      licenses: ["Apache 2.0"],
+      links: %{"Github" => "https://github.com/letoteteam/#{@app}"}
     ]
   end
 
