@@ -8,12 +8,13 @@ end
 defmodule KioskSystemRpi3.Mixfile do
   use Mix.Project
 
+  @app :kiosk_system_rpi3
   @version Path.join(__DIR__, "VERSION")
     |> File.read!
     |> String.trim
 
   def project do
-    [app: :kiosk_system_rpi3,
+    [app: @app,
      version: @version,
      elixir: "~> 1.3",
      compilers: Mix.compilers ++ [:nerves_package],
