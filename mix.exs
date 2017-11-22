@@ -10,15 +10,15 @@ defmodule KioskSystemRpi3.Mixfile do
 
   @app :kiosk_system_rpi3
   @version Path.join(__DIR__, "VERSION")
-    |> File.read!
-    |> String.trim
+           |> File.read!()
+           |> String.trim()
 
   def project do
     [
       app: @app,
       version: @version,
-      elixir: "~> 1.3",
-      compilers: Mix.compilers ++ [:nerves_package],
+      elixir: "~> 1.4",
+      compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
       package: package(),
@@ -43,7 +43,7 @@ defmodule KioskSystemRpi3.Mixfile do
       ],
       platform: Nerves.System.BR,
       platform_config: [
-        defconfig: "nerves_defconfig"
+        defconfig: "nerves_defconfig",
       ],
       checksum: package_files()
     ]
