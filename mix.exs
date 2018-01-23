@@ -83,7 +83,10 @@ defmodule KioskSystemRpi3.Mixfile do
       "cmdline.txt",
       "config.txt",
       "post-createfs.sh",
-      "VERSION"
+      "VERSION",
+      "Config.in",
+      "external.mk",
+      "package"
     ]
   end
 end
