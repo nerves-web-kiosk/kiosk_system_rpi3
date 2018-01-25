@@ -12,6 +12,14 @@ defmodule KioskSystemRpi3.Mixfile do
   @version Path.join(__DIR__, "VERSION")
            |> File.read!()
            |> String.trim()
+  provider = 
+    if System.get_env("CI") != nil do
+      Nerves.Artifact.Providers.Local
+    else
+      Nerves.Artifact.Providers.Docker
+    end
+
+  @provider provider
 
   def project do
     [
@@ -40,7 +48,7 @@ defmodule KioskSystemRpi3.Mixfile do
       artifact_sites: [
         {:github_releases, "letoteteam/#{@app}"},
       ],
-      provider: Nerves.Artifact.Providers.Docker,
+      provider: ,
       platform: Nerves.System.BR,
       platform_config: [
         defconfig: "nerves_defconfig",
@@ -51,13 +59,10 @@ defmodule KioskSystemRpi3.Mixfile do
 
   defp deps do
     [
-      #{:nerves, "~> 0.9", runtime: false},
-      {:nerves, github: "nerves-project/nerves", branch: "rel-v0.9.0", override: true, runtime: false},
-      #{:nerves, path: "../../nerves/nerves", runtime: false, override: true},
-      #{:nerves_system_br, "~> 0.17.0", runtime: false},
-      {:nerves_system_br, github: "nerves-project/nerves_system_br", branch: "nerves-v0.9", runtime: false},
-      {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 0.12.1", runtime: false},
-      {:nerves_system_linter, "~> 0.2.2", runtime: false}
+      {:nerves, "~> 0.9", runtime: false},
+      {:nerves_system_br, "~> 0.17.0", runtime: false},
+      {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 0.13.0", runtime: false},
+      {:nerves_system_linter, "~> 0.3.0", runtime: false}
     ]
   end
 
