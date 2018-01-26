@@ -48,7 +48,7 @@ defmodule KioskSystemRpi3.Mixfile do
       artifact_sites: [
         {:github_releases, "letoteteam/#{@app}"},
       ],
-      provider: ,
+      provider: @provider,
       platform: Nerves.System.BR,
       platform_config: [
         defconfig: "nerves_defconfig",
