@@ -1,0 +1,31 @@
+From 1543567ca61f3fd1ef553dfac9e623685d3372ed Mon Sep 17 00:00:00 2001
+From: Frank Hunleth <fhunleth@troodon-software.com>
+Date: Tue, 6 Feb 2018 17:19:24 -0500
+Subject: [PATCH] Add DigiCert Log Server 2
+
+---
+ src/3rdparty/chromium/net/cert/ct_known_logs_static-inc.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/src/3rdparty/chromium/net/cert/ct_known_logs_static-inc.h b/src/3rdparty/chromium/net/cert/ct_known_logs_static-inc.h
+index 7ead66c..52bb80e 100644
+--- a/src/3rdparty/chromium/net/cert/ct_known_logs_static-inc.h
++++ b/src/3rdparty/chromium/net/cert/ct_known_logs_static-inc.h
+@@ -49,6 +49,14 @@ const CTLogInfo kCTLogList[] = {
+      91, "DigiCert Log Server", "https://ct1.digicert-ct.com/log/",
+      "digicert.ct.googleapis.com"},
+     {"\x30\x59\x30\x13\x06\x07\x2a\x86\x48\xce\x3d\x02\x01\x06\x08\x2a\x86"
++     "\x48\xce\x3d\x03\x01\x07\x03\x42\x00\x04\xcc\x5d\x39\x2f\x66\xb8\x4c"
++     "\x7f\xc1\x2e\x03\xa1\x34\xa3\xe8\x8a\x86\x02\xae\x4a\x11\xc6\xf7\x26"
++     "\x6a\x37\x9b\xf0\x38\xf8\x5d\x09\x8d\x63\xe8\x31\x6b\x86\x66\xcf\x79"
++     "\xb3\x25\x3c\x1e\xdf\x78\xb4\xa8\xc5\x69\xfa\xb7\xf0\x82\x79\x62\x43"
++     "\xf6\xcc\xfe\x81\x66\x84",
++     91, "DigiCert Log Server 2", "https://ct2.digicert-ct.com/log/",
++     "digicert2.ct.googleapis.com"},
++    {"\x30\x59\x30\x13\x06\x07\x2a\x86\x48\xce\x3d\x02\x01\x06\x08\x2a\x86"
+      "\x48\xce\x3d\x03\x01\x07\x03\x42\x00\x04\x20\x5b\x18\xc8\x3c\xc1\x8b"
+      "\xb3\x31\x08\x00\xbf\xa0\x90\x57\x2b\xb7\x47\x8c\x6f\xb5\x68\xb0\x8e"
+      "\x90\x78\xe9\xa0\x73\xea\x4f\x28\x21\x2e\x9c\xc0\xf4\x16\x1b\xaa\xf9"
+-- 
+2.7.4
+
