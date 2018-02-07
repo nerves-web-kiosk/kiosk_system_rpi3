@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.13.0
+
+  Updated dependencies
+    * [nerves_system_br v0.17.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v0.17.0)
+    * [nerves_toolchain v0.13.0](https://github.com/nerves-project/toolchains/releases/tag/v0.13.0)
+    * [nerves v0.9.0](https://github.com/nerves-project/nerves/releases/tag/v0.9.0)
+  * Enhancements
+    * Use QtWebEngine instead of QtWebKit
+    * Added Socat for use connecting to the chromium remote debugger
+
 ## v0.12.0
 
   * New features

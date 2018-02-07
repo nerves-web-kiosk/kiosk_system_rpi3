@@ -27,13 +27,15 @@ This is the base Nerves System configuration for the Raspberry Pi 3 Model B.
 
 ```
 def deps do
-  [{:kiosk_system_rpi3, github: "letoteteam/kiosk_system_rpi3"}]
+  [{:kiosk_system_rpi3, "~> 0.13.0"}]
 end
 ```
 
 ## Building
 
-You will need to have `convert` via [ImageMagick](https://www.imagemagick.org) to build this system.
+Building this image require running under docker.
+If you are compiling locally, your instance of docker will need to have at least
+8gb of ram assigned to it.
 
 ## Built-in WiFi Firmware
 
@@ -45,3 +47,6 @@ here in a `rootfs-additions` overlay directory. The original firmware files came
 https://github.com/RPi-Distro/firmware-nonfree/blob/master/brcm80211/brcm.
 
 [Image credit](#fritzing): This image is from the [Fritzing](http://fritzing.org/home/) parts library.
+
+## Usage
+See the [example project](https://github.com/LeToteTeam/kiosk_system_rpi3/tree/master/example) for more info

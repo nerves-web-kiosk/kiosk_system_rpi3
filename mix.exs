@@ -68,7 +68,7 @@ defmodule KioskSystemRpi3.Mixfile do
 
   defp description do
     """
-    Nerves System - Raspberry Pi 3 B Kiosk
+    Nerves QtWebEngine Kiosk System - Raspberry Pi 3 B
     """
   end
 
