@@ -47,7 +47,10 @@ defmodule Example.MixProject do
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    [{:nerves, "~> 0.9", runtime: false}] ++ deps(@target)
+    [
+      {:nerves, "~> 0.9", runtime: false},
+      {:logger_circular_buffer, "~> 0.2"}
+    ] ++ deps(@target)
   end
 
   # Specify target specific dependencies
@@ -58,7 +61,7 @@ defmodule Example.MixProject do
       {:shoehorn, "~> 0.2"},
       {:nerves_runtime, "~> 0.4"},
       {:nerves_network, "~> 0.3"},
-      {:nerves_init_gadget, "~> 0.1"}
+      {:nerves_init_gadget, "~> 0.1"},
     ] ++ system(target)
   end
 

@@ -1,0 +1,26 @@
+html, body {
+  background-color: #000000;
+  height: 100%;
+  margin:0;
+  padding:0;
+}
+
+div {
+  position:relative;
+  height: 100%;
+  width:100%;
+  background-image: url(images/background.svg);
+  background-position: center;
+  background-size: cover;
+}
+
+div#img {
+  background: url(images/nerves-badge.png) center center no-repeat;
+  background-clip: border-box;
+  background-color:rgba(0, 0, 0, 0.7);
+  background-origin: padding-box;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  margin:auto;
+}
+

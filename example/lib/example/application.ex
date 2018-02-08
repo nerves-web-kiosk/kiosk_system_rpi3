@@ -50,17 +50,18 @@ defmodule Example.Application do
   end
 
   def init1(_delta) do
-    :timer.sleep(200)
-    init_ntp("time.nist.gov")
-    :timer.sleep(200)
+    # You will need to wait until the time is set if you point
+    # to an ssl domain
+    # :timer.sleep(200)
+    # init_ntp("time.nist.gov")
+    # :timer.sleep(200)
     init_ui()
   end
 
   def init_ui() do
     System.put_env("QTWEBENGINE_REMOTE_DEBUGGING", "9222")
-    System.put_env("QTWEBENGINE_CHROMIUM_FLAGS", "--enable-logging --log-level=0")
-    config = Application.get_env(:example, :qt_webengine_kiosk)
-    System.cmd("qt-webengine-kiosk", ["-c", "/etc/qt-webengine-kiosk.ini", "--opengl", "NATIVE", "-u", config[:url]])
+    System.put_env("QTWEBENGINE_CHROMIUM_FLAGS", "--disable-embedded-switches")
+    System.cmd("qt-webengine-kiosk", ["-c", "/etc/qt-webengine-kiosk.ini", "--opengl", "NATIVE"])
   end
 
   def init_ntp(ntp_server) do

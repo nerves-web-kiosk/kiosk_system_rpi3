@@ -20,6 +20,16 @@ config :shoehorn,
   init: [:nerves_runtime, :nerves_init_gadget],
   app: Mix.Project.config()[:app]
 
+config :nerves, :firmware,
+  rootfs_overlay: "rootfs_overlay"
+
+# Add the LoggerCircularBuffer backend. This removes the
+# default :console backend.
+config :logger, backends: [LoggerCircularBuffer]
+
+# Set the number of messages to hold in the circular buffer
+config :logger, LoggerCircularBuffer, buffer_size: 100
+
 network_ssid = System.get_env("NERVES_NETWORK_SSID")
 network_psk = System.get_env("NERVES_NETWORK_PSK")
 
@@ -44,9 +54,6 @@ config :nerves_init_gadget,
   mdns_domain: "kiosk.local",
   node_name: "kiosk",
   node_host: :mdns_domain
-
-config :example, :qt_webengine_kiosk,
-  url: System.get_env("KIOSK_URL") || "https://www.google.com"
 
 config :nerves_firmware_ssh,
   authorized_keys: [
