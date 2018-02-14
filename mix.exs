@@ -26,16 +26,22 @@ defmodule KioskSystemRpi3.Mixfile do
       app: @app,
       version: @version,
       elixir: "~> 1.4",
+      archives: [nerves_bootstrap: "~> 0.8"],
       compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
       package: package(),
       deps: deps(),
       nerves_package: nerves_package(),
-      aliases: [
-        "deps.loadpaths": ["nerves.env", "deps.loadpaths"],
-        "deps.get": ["deps.get", "nerves.deps.get"]]
+      aliases: ["loadconfig": [&bootstrap/1]]
     ]
+  end
+
+  # Starting nerves_bootstrap adds the required aliases to Mix.Project.config()
+  # Aliases are only added if MIX_TARGET is set.
+  def bootstrap(args) do
+    Application.start(:nerves_bootstrap)
+    Mix.Task.run("loadconfig", args)
   end
 
   def application do
@@ -59,7 +65,7 @@ defmodule KioskSystemRpi3.Mixfile do
 
   defp deps do
     [
-      {:nerves, "~> 0.9", runtime: false},
+      {:nerves, "~> 0.10`", runtime: false},
       {:nerves_system_br, "~> 0.17.0", runtime: false},
       {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 0.13.0", runtime: false},
       {:nerves_system_linter, "~> 0.3.0", runtime: false}

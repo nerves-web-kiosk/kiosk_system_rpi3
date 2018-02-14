@@ -25,9 +25,16 @@ defmodule Example.MixProject do
       lockfile: "mix.lock.#{@target}",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      aliases: aliases(@target),
+      aliases: ["loadconfig": [&bootstrap/1]]
       deps: deps()
     ]
+  end
+
+  # Starting nerves_bootstrap adds the required aliases to Mix.Project.config()
+  # Aliases are only added if MIX_TARGET is set.
+  def bootstrap(args) do
+    Application.start(:nerves_bootstrap)
+    Mix.Task.run("loadconfig", args)
   end
 
   # Run "mix help compile.app" to learn about applications.
@@ -68,13 +75,4 @@ defmodule Example.MixProject do
   defp system("rpi3"), do: [{:kiosk_system_rpi3, path: "../", runtime: false}]
   defp system(target), do: Mix.raise "Unknown MIX_TARGET: #{target}"
 
-  # We do not invoke the Nerves Env when running on the Host
-  defp aliases("host"), do: []
-
-  defp aliases(_target) do
-    [
-      # Add custom mix aliases here
-    ]
-    |> Nerves.Bootstrap.add_aliases()
-  end
 end
