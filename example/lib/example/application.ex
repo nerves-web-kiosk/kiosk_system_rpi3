@@ -9,9 +9,12 @@ defmodule Example.Application do
     init0()
     # Define workers and child supervisors to be supervised
     children = [
-      worker(SystemRegistry.Task, [
-        [:state, :network_interface,  iface, :ipv4_address],
-        &init1/1])
+      # Uncomment this if you need to wait for an IP
+      # You will need this to load remote content
+      
+      # worker(SystemRegistry.Task, [
+      #   [:state, :network_interface,  iface, :ipv4_address],
+      #   &init1/1])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

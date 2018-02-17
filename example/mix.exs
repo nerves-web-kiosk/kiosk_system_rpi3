@@ -3,29 +3,19 @@ defmodule Example.MixProject do
 
   @target System.get_env("MIX_TARGET") || "host"
 
-  Mix.shell().info([
-    :green,
-    """
-    Mix environment
-      MIX_TARGET:   #{@target}
-      MIX_ENV:      #{Mix.env()}
-    """,
-    :reset
-  ])
-
   def project do
     [
       app: :example,
       version: "0.1.0",
       elixir: "~> 1.4",
       target: @target,
-      archives: [nerves_bootstrap: "~> 0.7"],
+      archives: [nerves_bootstrap: "~> 1.0-rc"],
       deps_path: "deps/#{@target}",
       build_path: "_build/#{@target}",
       lockfile: "mix.lock.#{@target}",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      aliases: ["loadconfig": [&bootstrap/1]]
+      aliases: ["loadconfig": [&bootstrap/1]],
       deps: deps()
     ]
   end
@@ -56,7 +46,7 @@ defmodule Example.MixProject do
   defp deps do
     [
       {:nerves, "~> 0.9", runtime: false},
-      {:logger_circular_buffer, "~> 0.2"}
+      {:ring_logger, "~> 0.3"},
     ] ++ deps(@target)
   end
 
@@ -69,10 +59,11 @@ defmodule Example.MixProject do
       {:nerves_runtime, "~> 0.4"},
       {:nerves_network, "~> 0.3"},
       {:nerves_init_gadget, "~> 0.1"},
+      {:nerves_input_event, github: "LeToteTeam/nerves_input_event"}
     ] ++ system(target)
   end
 
-  defp system("rpi3"), do: [{:kiosk_system_rpi3, path: "../", runtime: false}]
+  defp system("rpi3"), do: [{:kiosk_system_rpi3, "~> 0.13", runtime: false}]
   defp system(target), do: Mix.raise "Unknown MIX_TARGET: #{target}"
 
 end

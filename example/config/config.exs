@@ -25,10 +25,10 @@ config :nerves, :firmware,
 
 # Add the LoggerCircularBuffer backend. This removes the
 # default :console backend.
-config :logger, backends: [LoggerCircularBuffer]
+config :logger, backends: [RingLogger]
 
 # Set the number of messages to hold in the circular buffer
-config :logger, LoggerCircularBuffer, buffer_size: 100
+config :logger, RingLogger, buffer_size: 100
 
 network_ssid = System.get_env("NERVES_NETWORK_SSID")
 network_psk = System.get_env("NERVES_NETWORK_PSK")
