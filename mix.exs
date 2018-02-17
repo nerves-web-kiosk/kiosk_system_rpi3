@@ -26,7 +26,7 @@ defmodule KioskSystemRpi3.Mixfile do
       app: @app,
       version: @version,
       elixir: "~> 1.4",
-      archives: [nerves_bootstrap: "~> 0.8"],
+      archives: [nerves_bootstrap: "~> 0.8 or ~> 1.0-rc"],
       compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
@@ -89,21 +89,25 @@ defmodule KioskSystemRpi3.Mixfile do
 
   defp package_files do
     [
-      "LICENSE",
-      "mix.exs",
-      "README.md",
-      "CHANGELOG.md",
-      "nerves_defconfig",
+      "package",
+      "patches",
       "rootfs_overlay",
-      "linux-4.4.defconfig",
-      "fwup.conf",
+      "CHANGELOG.md",
       "cmdline.txt",
-      "config.txt",
-      "post-createfs.sh",
-      "VERSION",
       "Config.in",
+      "config.txt",
       "external.mk",
-      "package"
+      "fwup-revert.conf",
+      "fwup.conf",
+      "LICENSE",
+      "linux-4.4.defconfig",
+      "mix.exs",
+      "nerves_defconfig",
+      "post-build.sh",
+      "post-createfs.sh",
+      "README.md",
+      "users_table.txt",
+      "VERSION"
     ]
   end
 end
