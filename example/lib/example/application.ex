@@ -16,7 +16,8 @@ defmodule Example.Application do
       #   [:state, :network_interface,  iface, :ipv4_address],
       #   &init1/1])
     ]
-
+    # Comment this out if waiting for an IP
+    init1(nil)
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Example.Supervisor]
@@ -53,11 +54,9 @@ defmodule Example.Application do
   end
 
   def init1(_delta) do
-    # You will need to wait until the time is set if you point
+    # Uncomment if you will need to wait until the time is set if you point
     # to an ssl domain
-    # :timer.sleep(200)
     # init_ntp("time.nist.gov")
-    # :timer.sleep(200)
     init_ui()
   end
 
