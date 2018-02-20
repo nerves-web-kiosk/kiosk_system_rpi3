@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.14.0
+
+  Enhancements
+    * Support for Nerves 1.0-rc
+    * Added support for controlling the raspberry pi backlight through sysfs
+    * Added the DHT11 linux module and overlay
+    * Updated example project
+
 ## v0.13.0
 
   Updated dependencies
