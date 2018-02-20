@@ -1,8 +1,8 @@
 %{
   "distillery": {:hex, :distillery, "1.5.2", "eec18b2d37b55b0bcb670cf2bcf64228ed38ce8b046bb30a9b636a6f5a4c0080", [:mix], [], "hexpm"},
-  "nerves": {:hex, :nerves, "0.10.1", "2cc6d87709d11458fe054d409904ad3b950c9ac6c05c3a003ae24b114eb1874b", [:mix], [{:distillery, "~> 1.4", [hex: :distillery, repo: "hexpm", optional: false]}], "hexpm"},
+  "nerves": {:hex, :nerves, "0.11.0", "631693062f2fdad92b2f9d34ac7c230bbda985276b5cd99e6beff7c1a0545326", [:mix], [{:distillery, "~> 1.4", [hex: :distillery, repo: "hexpm", optional: false]}], "hexpm"},
   "nerves_system_br": {:hex, :nerves_system_br, "0.17.0", "f7c0d1b6b11e9a1c187b17f2401a00956bebd5c45946bfe2a332ad26ecbf18f9", [:mix], [], "hexpm"},
   "nerves_system_linter": {:hex, :nerves_system_linter, "0.3.0", "84e0f63c8ac196b16b77608bbe7df66dcf352845c4e4fb394bffd2b572025413", [:mix], [], "hexpm"},
-  "nerves_toolchain_arm_unknown_linux_gnueabihf": {:hex, :nerves_toolchain_arm_unknown_linux_gnueabihf, "0.13.0", "998a206d011351be34a95f63362c8195a4e81be81496206390258442166a8353", [:mix], [{:nerves, "~> 0.9", [hex: :nerves, repo: "hexpm", optional: false]}, {:nerves_toolchain_ctng, "~> 1.3", [hex: :nerves_toolchain_ctng, repo: "hexpm", optional: false]}], "hexpm"},
-  "nerves_toolchain_ctng": {:hex, :nerves_toolchain_ctng, "1.3.0", "37486214f043e695b256785647f33e00b0ea4dcec2dfacd6e2c044c15d656e9d", [:mix], [{:nerves, "~> 0.9", [hex: :nerves, repo: "hexpm", optional: false]}], "hexpm"},
+  "nerves_toolchain_arm_unknown_linux_gnueabihf": {:hex, :nerves_toolchain_arm_unknown_linux_gnueabihf, "0.13.1", "f91a3c0e9f96a307d98c5dcae18d72bdb98ffc96dc8f03b8270df9ecbf046a0a", [:mix], [{:nerves, "~> 0.9", [hex: :nerves, repo: "hexpm", optional: false]}, {:nerves_toolchain_ctng, "~> 1.3", [hex: :nerves_toolchain_ctng, repo: "hexpm", optional: false]}], "hexpm"},
+  "nerves_toolchain_ctng": {:hex, :nerves_toolchain_ctng, "1.3.1", "add96a4b12da4b50fdc5cf18517989de37cf3b329d7edf258ec794878ba06e89", [:mix], [{:nerves, "~> 0.9", [hex: :nerves, repo: "hexpm", optional: false]}], "hexpm"},
 }

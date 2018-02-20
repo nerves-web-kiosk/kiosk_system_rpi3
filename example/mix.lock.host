@@ -1,5 +1,5 @@
 %{
   "distillery": {:hex, :distillery, "1.5.2", "eec18b2d37b55b0bcb670cf2bcf64228ed38ce8b046bb30a9b636a6f5a4c0080", [:mix], [], "hexpm"},
-  "nerves": {:hex, :nerves, "0.9.4", "6ff8b5bbe5a8a08c49b598248aada91ad13e71fcd1937c045f2fc0759a228212", [:mix], [{:distillery, "~> 1.4", [hex: :distillery, repo: "hexpm", optional: false]}], "hexpm"},
-  "ring_logger": {:hex, :ring_logger, "0.3.0", "6585fb55ab9f2f7326a45b840925df45289ce03e2e908793a6c9a04466674f61", [:mix], [], "hexpm"},
+  "nerves": {:hex, :nerves, "0.11.0", "631693062f2fdad92b2f9d34ac7c230bbda985276b5cd99e6beff7c1a0545326", [:mix], [{:distillery, "~> 1.4", [hex: :distillery, repo: "hexpm", optional: false]}], "hexpm"},
+  "ring_logger": {:hex, :ring_logger, "0.4.0", "d58b2d9be6350d291fde90c734dcd56cb50b9be7cae4868163088db84a499e92", [:mix], [], "hexpm"},
 }

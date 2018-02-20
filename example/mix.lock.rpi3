@@ -17,7 +17,7 @@
   "nerves_toolchain_arm_unknown_linux_gnueabihf": {:hex, :nerves_toolchain_arm_unknown_linux_gnueabihf, "0.13.1", "f91a3c0e9f96a307d98c5dcae18d72bdb98ffc96dc8f03b8270df9ecbf046a0a", [:mix], [{:nerves, "~> 0.9", [hex: :nerves, repo: "hexpm", optional: false]}, {:nerves_toolchain_ctng, "~> 1.3", [hex: :nerves_toolchain_ctng, repo: "hexpm", optional: false]}], "hexpm"},
   "nerves_toolchain_ctng": {:hex, :nerves_toolchain_ctng, "1.3.1", "add96a4b12da4b50fdc5cf18517989de37cf3b329d7edf258ec794878ba06e89", [:mix], [{:nerves, "~> 0.9", [hex: :nerves, repo: "hexpm", optional: false]}], "hexpm"},
   "nerves_wpa_supplicant": {:hex, :nerves_wpa_supplicant, "0.3.2", "19dc7e1248336e7f542b11b2b857ceb5b088d3eb41a6ca75b7b76628dcf67aad", [:make, :mix], [{:elixir_make, "~> 0.3", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm"},
-  "ring_logger": {:hex, :ring_logger, "0.3.0", "6585fb55ab9f2f7326a45b840925df45289ce03e2e908793a6c9a04466674f61", [:mix], [], "hexpm"},
+  "ring_logger": {:hex, :ring_logger, "0.4.0", "d58b2d9be6350d291fde90c734dcd56cb50b9be7cae4868163088db84a499e92", [:mix], [], "hexpm"},
   "shoehorn": {:hex, :shoehorn, "0.2.0", "6aa80804145c545c59af01980d255209483b14826f53411b4a8797b24c323c20", [:mix], [{:distillery, "~> 1.0", [hex: :distillery, repo: "hexpm", optional: false]}], "hexpm"},
   "socket": {:hex, :socket, "0.3.13", "98a2ab20ce17f95fb512c5cadddba32b57273e0d2dba2d2e5f976c5969d0c632", [:mix], [], "hexpm"},
   "system_registry": {:hex, :system_registry, "0.7.0", "cd3aaf2c15392fa60f93869dde49f536fcf60e54f3b15db737e7d4ebcac108f4", [:mix], [], "hexpm"},

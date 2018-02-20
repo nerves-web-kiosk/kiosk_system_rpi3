@@ -9,7 +9,7 @@ defmodule Example.MixProject do
       version: "0.1.0",
       elixir: "~> 1.4",
       target: @target,
-      archives: [nerves_bootstrap: "~> 1.0-rc"],
+      archives: [nerves_bootstrap: "~> 0.8 or ~> 1.0-rc"],
       deps_path: "deps/#{@target}",
       build_path: "_build/#{@target}",
       lockfile: "mix.lock.#{@target}",
@@ -45,8 +45,8 @@ defmodule Example.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:nerves, "~> 0.9", runtime: false},
-      {:ring_logger, "~> 0.3"},
+      {:nerves, "~> 0.10 or ~> 1.0-rc", runtime: false},
+      {:ring_logger, "~> 0.4"},
     ] ++ deps(@target)
   end
 
@@ -58,12 +58,11 @@ defmodule Example.MixProject do
       {:shoehorn, "~> 0.2"},
       {:nerves_runtime, "~> 0.4"},
       {:nerves_network, "~> 0.3"},
-      {:nerves_init_gadget, "~> 0.1"},
-      {:nerves_input_event, github: "LeToteTeam/nerves_input_event"}
+      {:nerves_init_gadget, "~> 0.1"}
     ] ++ system(target)
   end
 
-  defp system("rpi3"), do: [{:kiosk_system_rpi3, "~> 0.13", runtime: false}]
+  defp system("rpi3"), do: [{:kiosk_system_rpi3, path: "../", runtime: false}]
   defp system(target), do: Mix.raise "Unknown MIX_TARGET: #{target}"
 
 end

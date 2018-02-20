@@ -23,7 +23,7 @@ config :shoehorn,
 config :nerves, :firmware,
   rootfs_overlay: "rootfs_overlay"
 
-# Add the LoggerCircularBuffer backend. This removes the
+# Add the RingLogger backend. This removes the
 # default :console backend.
 config :logger, backends: [RingLogger]
 
