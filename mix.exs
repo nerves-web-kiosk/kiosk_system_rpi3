@@ -1,7 +1,9 @@
-if Mix.env == :test do
-  hash = :os.cmd('git rev-parse HEAD')
+if Mix.env() == :test do
+  hash =
+    :os.cmd('git rev-parse HEAD')
     |> to_string
-    |> String.trim
+    |> String.trim()
+
   System.put_env("NERVES_FW_VCS_IDENTIFIER", hash)
 end
 
@@ -12,7 +14,7 @@ defmodule KioskSystemRpi3.Mixfile do
   @version Path.join(__DIR__, "VERSION")
            |> File.read!()
            |> String.trim()
-  provider = 
+  provider =
     if System.get_env("CI") != nil do
       Nerves.Artifact.Providers.Local
     else
@@ -33,7 +35,7 @@ defmodule KioskSystemRpi3.Mixfile do
       package: package(),
       deps: deps(),
       nerves_package: nerves_package(),
-      aliases: ["loadconfig": [&bootstrap/1]]
+      aliases: [loadconfig: [&bootstrap/1]]
     ]
   end
 
@@ -52,12 +54,12 @@ defmodule KioskSystemRpi3.Mixfile do
     [
       type: :system,
       artifact_sites: [
-        {:github_releases, "letoteteam/#{@app}"},
+        {:github_releases, "letoteteam/#{@app}"}
       ],
       provider: @provider,
       platform: Nerves.System.BR,
       platform_config: [
-        defconfig: "nerves_defconfig",
+        defconfig: "nerves_defconfig"
       ],
       checksum: package_files()
     ]
