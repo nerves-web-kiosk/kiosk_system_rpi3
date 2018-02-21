@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.14.0
+## v1.0.0-rc.0
 
   Enhancements
     * Support for Nerves 1.0-rc
