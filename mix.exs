@@ -1,12 +1,3 @@
-if Mix.env() == :test do
-  hash =
-    :os.cmd('git rev-parse HEAD')
-    |> to_string
-    |> String.trim()
-
-  System.put_env("NERVES_FW_VCS_IDENTIFIER", hash)
-end
-
 defmodule KioskSystemRpi3.Mixfile do
   use Mix.Project
 
@@ -28,7 +19,7 @@ defmodule KioskSystemRpi3.Mixfile do
       app: @app,
       version: @version,
       elixir: "~> 1.4",
-      archives: [nerves_bootstrap: "~> 0.8 or ~> 1.0-rc"],
+      archives: [nerves_bootstrap: "~> 1.0-rc"],
       compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
@@ -39,15 +30,14 @@ defmodule KioskSystemRpi3.Mixfile do
     ]
   end
 
-  # Starting nerves_bootstrap adds the required aliases to Mix.Project.config()
-  # Aliases are only added if MIX_TARGET is set.
-  def bootstrap(args) do
-    Application.start(:nerves_bootstrap)
-    Mix.Task.run("loadconfig", args)
-  end
-
   def application do
     []
+  end
+
+  def bootstrap(args) do
+    System.put_env("MIX_TARGET", "rpi3")
+    Application.start(:nerves_bootstrap)
+    Mix.Task.run("loadconfig", args)
   end
 
   def nerves_package do
@@ -67,9 +57,9 @@ defmodule KioskSystemRpi3.Mixfile do
 
   defp deps do
     [
-      {:nerves, "~> 0.10 or ~> 1.0-rc", runtime: false},
-      {:nerves_system_br, "~> 0.17.0 or ~> 1.0-rc", runtime: false},
-      {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 0.13.0 or ~> 1.0-rc", runtime: false},
+      {:nerves, "~> 1.0-rc", runtime: false},
+      {:nerves_system_br, "~> 1.0-rc", runtime: false},
+      {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 1.0-rc", runtime: false},
       {:nerves_system_linter, "~> 0.3.0", runtime: false}
     ]
   end
