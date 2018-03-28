@@ -1,4 +1,4 @@
-defmodule KioskSystemRpi3.Mixfile do
+defmodule KioskSystemRpi3.MixProject do
   use Mix.Project
 
   @app :kiosk_system_rpi3
@@ -25,8 +25,8 @@ defmodule KioskSystemRpi3.Mixfile do
       description: description(),
       package: package(),
       deps: deps(),
-      nerves_package: nerves_package(),
-      aliases: [loadconfig: [&bootstrap/1]]
+      aliases: [loadconfig: [&bootstrap/1]],
+      docs: [extras: ["README.md"], main: "readme"]
     ]
   end
 
@@ -34,13 +34,13 @@ defmodule KioskSystemRpi3.Mixfile do
     []
   end
 
-  def bootstrap(args) do
+  defp bootstrap(args) do
     System.put_env("MIX_TARGET", "rpi3")
     Application.start(:nerves_bootstrap)
     Mix.Task.run("loadconfig", args)
   end
 
-  def nerves_package do
+  defp nerves_package do
     [
       type: :system,
       artifact_sites: [
@@ -60,7 +60,8 @@ defmodule KioskSystemRpi3.Mixfile do
       {:nerves, "~> 1.0-rc", runtime: false},
       {:nerves_system_br, "~> 1.0-rc", runtime: false},
       {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 1.0-rc", runtime: false},
-      {:nerves_system_linter, "~> 0.3.0", runtime: false}
+      {:nerves_system_linter, "~> 0.3.0", runtime: false},
+      {:ex_doc, "~> 0.18", only: :dev}
     ]
   end
 
@@ -93,6 +94,7 @@ defmodule KioskSystemRpi3.Mixfile do
       "fwup.conf",
       "LICENSE",
       "linux-4.4.defconfig",
+      "linux-4.9.defconfig",
       "mix.exs",
       "nerves_defconfig",
       "post-build.sh",
