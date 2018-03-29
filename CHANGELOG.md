@@ -1,8 +1,16 @@
 # Changelog
 
+## v1.0.0-rc.1
+
+  * Updated dependencies
+    * [nerves_system_br v1.0.0-rc.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.0.0-rc.3)
+    * Linux 4.9
+  * Enhancements
+    * Support for Raspberry Pi 3 B+
+
 ## v1.0.0-rc.0
 
-  Enhancements
+  * Enhancements
     * Support for Nerves 1.0-rc
     * Added support for controlling the raspberry pi backlight through sysfs
     * Added the DHT11 linux module and overlay
@@ -10,7 +18,7 @@
 
 ## v0.13.0
 
-  Updated dependencies
+  * Updated dependencies
     * [nerves_system_br v0.17.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v0.17.0)
     * [nerves_toolchain v0.13.0](https://github.com/nerves-project/toolchains/releases/tag/v0.13.0)
     * [nerves v0.9.0](https://github.com/nerves-project/nerves/releases/tag/v0.9.0)
