@@ -1,0 +1,23 @@
+html, body {
+  background-color: #000000;
+  height: 100%;
+  margin:0;
+  padding:0;
+}
+
+img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logo {
+  height: 150px;
+  width: 150px; 
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

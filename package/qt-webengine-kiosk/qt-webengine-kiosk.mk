@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-QT_WEBENGINE_KIOSK_VERSION = 40745158d2cde953b919c35281217f504a488468
-QT_WEBENGINE_KIOSK_SITE = https://github.com/mobileoverlord/qt-webengine-kiosk-1
+QT_WEBENGINE_KIOSK_VERSION = ca640db9b8fdfe5ad90578fb3ecc0e6f9dfe7b9f
+QT_WEBENGINE_KIOSK_SITE = https://github.com/mobileoverlord/qt-webengine-kiosk
 QT_WEBENGINE_KIOSK_SITE_METHOD = git
 QT_WEBENGINE_KIOSK_DEPENDENCIES = qt5webengine
 QT_WEBENGINE_KIOSK_LICENSE = LGPL-3.0
