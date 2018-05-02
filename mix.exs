@@ -19,7 +19,7 @@ defmodule KioskSystemRpi3.MixProject do
       app: @app,
       version: @version,
       elixir: "~> 1.4",
-      archives: [nerves_bootstrap: "~> 1.0-rc"],
+      archives: [nerves_bootstrap: "~> 1.0"],
       compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
@@ -57,11 +57,9 @@ defmodule KioskSystemRpi3.MixProject do
 
   defp deps do
     [
-      #{:nerves, "~> 1.0-rc", runtime: false},
-      {:nerves, github: "nerves-project/nerves", runtime: false, override: true},
-      #{:nerves_system_br, "~> 1.0-rc", runtime: false},
-      {:nerves_system_br, github: "nerves-project/nerves_system_br", runtime: false},
-      {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 1.0-rc", runtime: false},
+      {:nerves, "~> 1.0", runtime: false},
+      {:nerves_system_br, "~> 1.0.0", runtime: false},
+      {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 1.0", runtime: false},
       {:nerves_system_linter, "~> 0.3.0", runtime: false},
       {:ex_doc, "~> 0.18", only: :dev}
     ]

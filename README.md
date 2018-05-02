@@ -23,13 +23,19 @@ This is the base Nerves System configuration for the Raspberry Pi 3 Model B.
 | WiFi                 | Yes - Nerves.InterimWiFi        |
 | Bluetooth            | Not yet                         |
 
-## Installation
+## Using
 
-```
-def deps do
-  [{:kiosk_system_rpi3, "~> 0.13.0"}]
-end
-```
+The most common way of using this Nerves System is create a project with `mix
+nerves.new` and to export `MIX_TARGET=rpi0`. See the [Getting started
+guide](https://hexdocs.pm/nerves/getting-started.html#creating-a-new-nerves-app)
+for more information.
+
+If you need custom modifications to this system for your device, clone this
+repository and update as described in [Making custom
+systems](https://hexdocs.pm/nerves/systems.html#customizing-your-own-nerves-system)
+
+See the [example project](https://github.com/LeToteTeam/kiosk_system_rpi3/tree/master/example) for more info
+
 
 ## Building
 
@@ -47,6 +53,3 @@ here in a `rootfs-additions` overlay directory. The original firmware files came
 https://github.com/RPi-Distro/firmware-nonfree/blob/master/brcm80211/brcm.
 
 [Image credit](#fritzing): This image is from the [Fritzing](http://fritzing.org/home/) parts library.
-
-## Usage
-See the [example project](https://github.com/LeToteTeam/kiosk_system_rpi3/tree/master/example) for more info
