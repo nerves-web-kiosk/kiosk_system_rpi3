@@ -1,6 +1,6 @@
 # Raspberry Pi 3 Kiosk
 
-Implements `qt-webkit-kiosk` for rendering webkit.
+Implements `qt-webengine-kiosk` for rendering QtWebEngine.
 
 This is the base Nerves System configuration for the Raspberry Pi 3 Model B.
 
@@ -12,8 +12,8 @@ This is the base Nerves System configuration for the Raspberry Pi 3 Model B.
 | CPU                  | 1.2 GHz quad-core ARMv8         |
 | Memory               | 1 GB DRAM                       |
 | Storage              | MicroSD                         |
-| Linux kernel         | 4.4.43 w/ Raspberry Pi patches  |
-| IEx terminal         | HDMI and USB keyboard (can be changed to UART)   |
+| Linux kernel         | 4.9 w/ Raspberry Pi patches  |
+| IEx terminal         | ttyS0 |
 | GPIO, I2C, SPI       | Yes - Elixir ALE                |
 | ADC                  | No                              |
 | PWM                  | Yes, but no Elixir support      |
@@ -26,7 +26,12 @@ This is the base Nerves System configuration for the Raspberry Pi 3 Model B.
 ## Using
 
 The most common way of using this Nerves System is create a project with `mix
-nerves.new` and to export `MIX_TARGET=rpi0`. See the [Getting started
+nerves.new` and to export `MIX_TARGET=rpi3`. 
+
+Then, change the rpi3 system dependency to
+`{:kiosk_system_rpi3, "~> 1.0"}`
+
+See the [Getting started
 guide](https://hexdocs.pm/nerves/getting-started.html#creating-a-new-nerves-app)
 for more information.
 
