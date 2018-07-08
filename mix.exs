@@ -47,6 +47,7 @@ defmodule KioskSystemRpi3.MixProject do
         {:github_releases, "letoteteam/#{@app}"}
       ],
       build_runner: @build_runner,
+      build_runner_opts: [make_args: ["PARALLEL_JOBS=8"]],
       platform: Nerves.System.BR,
       platform_config: [
         defconfig: "nerves_defconfig"
