@@ -84,8 +84,6 @@ jobs:
 
   build_test:
     <<: *defaults
-    artifacts:
-      - "/nerves/build/test/_build/test/nerves/images/"
     working_directory: /nerves/build/test
     steps:
       - restore_cache:
