@@ -58,3 +58,43 @@ here in a `rootfs-additions` overlay directory. The original firmware files came
 https://github.com/RPi-Distro/firmware-nonfree/blob/master/brcm80211/brcm.
 
 [Image credit](#fritzing): This image is from the [Fritzing](http://fritzing.org/home/) parts library.
+
+## Provisioning devices
+
+This system supports storing provisioning information in a small key-value store
+outside of any filesystem. Provisioning is an optional step and reasonable
+defaults are provided if this is missing.
+
+Provisioning information can be queried using the Nerves.Runtime KV store's
+[`Nerves.Runtime.KV.get/1`](https://hexdocs.pm/nerves_runtime/Nerves.Runtime.KV.html#get/1)
+function.
+
+Keys used by this system are:
+
+Key             | Example Value     | Description
+:-------------- | :---------------- | :----------
+`serial_number` | "1234578"`        | By default, this string is used to create unique hostnames and Erlang node names. If unset, it defaults to part of the Raspberry Pi's device ID.
+
+The normal procedure would be to set these keys once in manufacturing or before
+deployment and then leave them alone.
+
+For example, to provision a serial number on a running device, run the following
+and reboot:
+
+```elixir
+iex> cmd("fw_setenv serial_number 1234")
+```
+
+This system supports setting the serial number offline. To do this, set the
+`SERIAL_NUMBER` environment variable when burning the firmware. If you're
+programming MicroSD cards using `fwup`, the commandline is:
+
+```sh
+sudo SERIAL_NUMBER=1234 fwup path_to_firmware.fw
+```
+
+Serial numbers are stored on the MicroSD card so if the MicroSD card is
+replaced, the serial number will need to be reprogrammed. The numbers are stored
+in a U-boot environment block. This is a special region that is separate from
+the application partition so reformatting the application partition will not
+lose the serial number or any other data stored in this block.

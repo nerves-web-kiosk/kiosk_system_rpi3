@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.0
+
+This release adds official support for provisioning serial numbers to devices. Other information can be provisioned in a similar manner. See the README.md for details.
+
+  * Enhancements
+    * Erlang to OTP 21.0
+    * Adds firmware UUID support. This support can be used to unambiguously know what's running on a device.
+
+  * Updated dependencies
+    * [nerves_system_br v1.3.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.3.0)
+
 ## v1.0.0
 
   * Updated dependencies
