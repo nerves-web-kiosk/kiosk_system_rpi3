@@ -2,4 +2,3 @@
 #
 # If these are non-proprietary, please consider contributing them back to
 # Nerves or Buildroot.
-source "$NERVES_DEFCONFIG_DIR/package/qt-webengine-kiosk/Config.in"

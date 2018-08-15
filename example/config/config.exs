@@ -55,6 +55,14 @@ config :nerves_init_gadget,
   node_name: "kiosk",
   node_host: :mdns_domain
 
+config :webengine_kiosk,
+  fullscreen: true,
+  homepage: "file:///var/www/index.html",
+  background_color: "black",
+  blank_image: "/var/www/assets/nerves.png",
+  progress: true,
+  sounds: false
+
 config :nerves_firmware_ssh,
   authorized_keys: [
     File.read!(Path.join(System.user_home!, ".ssh/id_rsa.pub"))

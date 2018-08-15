@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.3.0-dev
+
+This release changes from using `qt-webengine-kiosk` to the elixir package
+`webengine_kiosk`. See the example application in `/example` for more information.
+
 ## v1.2.0
 
 This release upgrades gcc from version 6.3.0 to 7.3.0. See the toolchain release
