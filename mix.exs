@@ -68,13 +68,13 @@ defmodule KioskSystemRpi3.MixProject do
 
   defp description do
     """
-    Nerves QtWebEngine Kiosk System - Raspberry Pi 3 B
+    Nerves QtWebEngine Kiosk System - Raspberry Pi 3 B and B+
     """
   end
 
   defp package do
     [
-      maintainers: ["Justin Schneck", "Greg Mefford", "Jeff Smith"],
+      maintainers: ["Justin Schneck"],
       files: package_files(),
       licenses: ["Apache 2.0"],
       links: %{"Github" => "https://github.com/letoteteam/#{@app}"}
@@ -83,19 +83,19 @@ defmodule KioskSystemRpi3.MixProject do
 
   defp package_files do
     [
-      "package",
+      "fwup-include",
       "patches",
       "rootfs_overlay",
       "CHANGELOG.md",
       "cmdline.txt",
       "Config.in",
       "config.txt",
-      "external.mk",
       "fwup-revert.conf",
       "fwup.conf",
       "LICENSE",
       "linux-4.4.defconfig",
       "linux-4.9.defconfig",
+      "logo_custom_clut224.ppm",
       "mix.exs",
       "nerves_defconfig",
       "post-build.sh",
