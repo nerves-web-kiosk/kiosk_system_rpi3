@@ -83,7 +83,7 @@ defmodule KioskSystemRpi3.MixProject do
 
   defp package_files do
     [
-      "fwup-include",
+      "fwup_include",
       "patches",
       "rootfs_overlay",
       "CHANGELOG.md",
