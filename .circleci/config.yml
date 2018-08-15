@@ -45,6 +45,9 @@ jobs:
       - restore_cache:
           key: nerves/cache-{{ .Environment.CIRCLE_PROJECT_USERNAME}}-{{ .Environment.CIRCLE_PROJECT_REPONAME}}
       - run:
+          name: Validate Hex package
+          command: mix hex.build
+      - run:
           name: Build
           command: mix compile
       - run:
