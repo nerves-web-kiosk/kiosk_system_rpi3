@@ -1,9 +1,15 @@
 # Changelog
 
+## v1.3.0-rc.1
+
+Fix issues with hex package information
+
 ## v1.3.0-rc.0
 
 This release changes from using `qt-webengine-kiosk` to the elixir package
 `webengine_kiosk`. See the example application in `/example` for more information.
+
+This means that `qt-webengine-kiosk` is not longer included in the buildroot build.
 
 ## v1.2.0
 
