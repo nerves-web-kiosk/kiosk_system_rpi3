@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.3.0-rc.2
+
+Update provisioning
+
+* Change uboot env key `serial_number` to `nerves_serial_number`
+* Change fwup-include directory to fwup_include
+
 ## v1.3.0-rc.1
 
 Fix issues with hex package information
