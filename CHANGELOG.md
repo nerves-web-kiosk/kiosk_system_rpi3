@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.3.0-dev
+## v1.3.0-rc.0
 
 This release changes from using `qt-webengine-kiosk` to the elixir package
 `webengine_kiosk`. See the example application in `/example` for more information.
