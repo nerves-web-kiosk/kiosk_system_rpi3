@@ -82,15 +82,15 @@ For example, to provision a serial number on a running device, run the following
 and reboot:
 
 ```elixir
-iex> cmd("fw_setenv serial_number 1234")
+iex> cmd("fw_setenv nerves_serial_number 1234")
 ```
 
 This system supports setting the serial number offline. To do this, set the
-`SERIAL_NUMBER` environment variable when burning the firmware. If you're
+`NERVES_SERIAL_NUMBER` environment variable when burning the firmware. If you're
 programming MicroSD cards using `fwup`, the commandline is:
 
 ```sh
-sudo SERIAL_NUMBER=1234 fwup path_to_firmware.fw
+sudo NERVES_SERIAL_NUMBER=1234 fwup path_to_firmware.fw
 ```
 
 Serial numbers are stored on the MicroSD card so if the MicroSD card is
