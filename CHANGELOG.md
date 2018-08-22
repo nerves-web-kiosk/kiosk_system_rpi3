@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.3.1
+
+This release updates to QT 5.11.1 and allows running webengine as the `kiosk`
+user.
+
+* Updated dependencies
+  * [nerves_system_br v1.4.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.4.3)
+
 ## v1.3.0
 
 This release changes from using `qt-webengine-kiosk` to the elixir package
