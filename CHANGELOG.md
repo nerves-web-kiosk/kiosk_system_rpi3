@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.3.2
+
+* Bug fixes
+  * Trim Linux module list to remove warnings on OSX builds. This makes a few
+    other changes to the module list to remove some difficult to use modules on
+    Nerves projects.
+* Updated dependencies
+  * [nerves_system_br v1.4.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.4.5)
+
 ## v1.3.1
 
 This release updates to QT 5.11.1 and allows running webengine as the `kiosk`
