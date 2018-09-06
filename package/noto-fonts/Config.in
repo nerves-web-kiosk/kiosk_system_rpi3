@@ -1,0 +1,16 @@
+config BR2_PACKAGE_NOTO_FONTS
+	bool "Noto fonts, except for CJK and emoji"
+	help
+	  Noto fonts, except for CJK and emoji
+
+	  https://www.google.com/get/noto
+
+if BR2_PACKAGE_NOTO_FONTS
+
+config BR2_PACKAGE_NOTO_FONTS_FONTS
+	string "List of fonts to install"
+	default "NotoSans-Regular"
+	help
+	  Specify a space-separated list of fonts to install
+
+endif
