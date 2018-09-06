@@ -1,0 +1,6 @@
+config BR2_PACKAGE_NOTO_CJK
+	bool "Noto CJK fonts"
+	help
+	  Noto Emoji fonts
+
+	  http://www.google.com/get/noto/help/cjk

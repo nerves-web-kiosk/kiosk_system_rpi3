@@ -1,0 +1,6 @@
+config BR2_PACKAGE_NOTO_EMOJI
+	bool "Noto Emoji fonts"
+	help
+	  Noto Emoji fonts
+
+	  https://www.google.com/get/noto/help/emoji/
