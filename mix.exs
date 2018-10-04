@@ -59,10 +59,10 @@ defmodule KioskSystemRpi3.MixProject do
   defp deps do
     [
       {:nerves, "~> 1.3", runtime: false},
-      {:nerves_system_br, "1.4.5", runtime: false},
+      {:nerves_system_br, "1.5.2", runtime: false},
       {:nerves_toolchain_arm_unknown_linux_gnueabihf, "1.1.0", runtime: false},
       {:nerves_system_linter, "~> 0.3.0", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.19", only: [:dev, :test], runtime: false}
+      {:ex_doc, "~> 0.18", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -93,8 +93,7 @@ defmodule KioskSystemRpi3.MixProject do
       "fwup-revert.conf",
       "fwup.conf",
       "LICENSE",
-      "linux-4.4.defconfig",
-      "linux-4.9.defconfig",
+      "linux-4.14.defconfig",
       "logo_custom_clut224.ppm",
       "mix.exs",
       "nerves_defconfig",
