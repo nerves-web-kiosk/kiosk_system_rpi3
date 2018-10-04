@@ -12,8 +12,8 @@ This is the base Nerves System configuration for the Raspberry Pi 3 Model B.
 | CPU                  | 1.2 GHz quad-core ARMv8         |
 | Memory               | 1 GB DRAM                       |
 | Storage              | MicroSD                         |
-| Linux kernel         | 4.9 w/ Raspberry Pi patches  |
-| IEx terminal         | ttyS0 |
+| Linux kernel         | 4.14 w/ Raspberry Pi patches    |
+| IEx terminal         | ttyS0                           |
 | GPIO, I2C, SPI       | Yes - Elixir ALE                |
 | ADC                  | No                              |
 | PWM                  | Yes, but no Elixir support      |
