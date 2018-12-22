@@ -35,9 +35,9 @@ defmodule Example.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:nerves, "~> 1.0", runtime: false},
+      {:nerves, "~> 1.3", runtime: false},
       {:ring_logger, "~> 0.4"},
-      {:shoehorn, "~> 0.2"}
+      {:shoehorn, "~> 0.4"}
     ] ++ deps(@target)
   end
 
