@@ -99,6 +99,7 @@ defmodule KioskSystemRpi3.MixProject do
       "nerves_defconfig",
       "post-build.sh",
       "post-createfs.sh",
+      "ramoops.dts",
       "README.md",
       "users_table.txt",
       "VERSION"

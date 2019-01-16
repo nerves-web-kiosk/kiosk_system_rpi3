@@ -22,6 +22,10 @@ dtparam=i2c_arm=on,spi=on
 dtoverlay=rpi-ft5406
 dtoverlay=rpi-backlight
 
+# The ramoops overlay works with the pstore driver to preserve crash
+# information across reboots in DRAM
+dtoverlay=ramoops
+
 # Comment this in or modify to enable OneWire
 # NOTE: check that the overlay that you specify is in the boot partition or
 #       this won't work.
