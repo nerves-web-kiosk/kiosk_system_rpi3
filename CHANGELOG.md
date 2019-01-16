@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.4.0
+
+This pulls in a pending patch in Buildroot to update the version of
+OpenSSL from 1.0.2 to 1.1.0h. This fixes what appears to be issues with
+Erlang using OpenSSL engines. It also enables Erlang crypto algorithms
+such as ed25519 that have been added in recent Erlang releases.
+
+* Updated dependencies
+  * [nerves_system_br v1.6.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.6.5)
+  * Erlang 21.2.2
+  * boardid 1.5.2
+  * erlinit 1.4.9
+  * OpenSSL 1.1.1a
+  * Linux 4.14.89 with patches from the Raspberry Pi Foundation
+  * libp11 0.4.9
+
+* Enhancements
+  * Moved boardid config from inside erlinit.config to /etc/boardid.config
+  * Compile gpiomem into the Linux kernel
+  * Enable pstore, an in-memory buffer that can capture logs, kernel
+    oops and other information when unexpected reboots. The buffer can be
+    recovered on the next boot where it can be inspected.
+
 ## v1.3.2
 
 * Bug fixes
