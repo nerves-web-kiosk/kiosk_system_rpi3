@@ -47,7 +47,7 @@ defmodule KioskSystemRpi3.MixProject do
         {:github_releases, "letoteteam/#{@app}"}
       ],
       build_runner: @build_runner,
-      build_runner_opts: [make_args: ["PARALLEL_JOBS=8"]],
+      build_runner_opts: build_runner_opts(),
       platform: Nerves.System.BR,
       platform_config: [
         defconfig: "nerves_defconfig"
@@ -103,5 +103,13 @@ defmodule KioskSystemRpi3.MixProject do
       "users_table.txt",
       "VERSION"
     ]
+  end
+
+  defp build_runner_opts() do
+    if primary_site = System.get_env("BR2_PRIMARY_SITE") do
+      [make_args: ["BR2_PRIMARY_SITE=#{primary_site}", "PARALLEL_JOBS=8"]]
+    else
+      [make_args: ["PARALLEL_JOBS=8"]]
+    end
   end
 end
