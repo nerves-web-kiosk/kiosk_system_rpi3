@@ -35,7 +35,7 @@ defmodule KioskSystemRpi3.MixProject do
   end
 
   defp bootstrap(args) do
-    System.put_env("MIX_TARGET", "rpi3")
+    set_target()
     Application.start(:nerves_bootstrap)
     Mix.Task.run("loadconfig", args)
   end
@@ -111,6 +111,14 @@ defmodule KioskSystemRpi3.MixProject do
       [make_args: ["BR2_PRIMARY_SITE=#{primary_site}", "PARALLEL_JOBS=8"]]
     else
       [make_args: ["PARALLEL_JOBS=8"]]
+    end
+  end
+
+  defp set_target() do
+    if function_exported?(Mix, :target, 1) do
+      apply(Mix, :target, [:target])
+    else
+      System.put_env("MIX_TARGET", "target")
     end
   end
 end
