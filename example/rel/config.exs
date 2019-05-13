@@ -14,11 +14,11 @@ use Mix.Releases.Config,
 # and environment configuration is called a profile
 
 environment :dev do
-  set cookie: :"gVk/XkX*Vy?Ls1Vmv@PfPYmZU.z;hB&hZ3<eRzO@%2!aF_|q:|w3wI%21>Lm7=*H"
+  set cookie: :"Unused with nerves. See vm.args"
 end
 
 environment :prod do
-  set cookie: :"gVk/XkX*Vy?Ls1Vmv@PfPYmZU.z;hB&hZ3<eRzO@%2!aF_|q:|w3wI%21>Lm7=*H"
+  set cookie: :"Unused with nerves. See vm.args"
 end
 
 # You may define one or more releases in this file.
@@ -29,12 +29,6 @@ end
 release :example do
   set version: current_version(:example)
   plugin Shoehorn
-  if System.get_env("NERVES_SYSTEM") do
-    set dev_mode: false
-    set include_src: false
-    set include_erts: System.get_env("ERL_LIB_DIR")
-    set include_system_libs: System.get_env("ERL_SYSTEM_LIB_DIR")
-    set vm_args: "rel/vm.args"
-  end
+  plugin Nerves
 end
 

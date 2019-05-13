@@ -18,7 +18,7 @@ defmodule KioskSystemRpi3.MixProject do
     [
       app: @app,
       version: @version,
-      elixir: "~> 1.6",
+      elixir: "~> 1.8",
       archives: [nerves_bootstrap: "~> 1.0"],
       compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),

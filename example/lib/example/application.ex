@@ -3,7 +3,7 @@ defmodule Example.Application do
   # for more information on OTP Applications
   @moduledoc false
 
-  @target Mix.Project.config()[:target]
+  @target Mix.target()
 
   use Application
 
@@ -33,11 +33,12 @@ defmodule Example.Application do
   defp platform_init("host"), do: :ok
 
   defp platform_init(_target) do
-    # Initialize udev :(
     :os.cmd('udevd -d');
     :os.cmd('udevadm trigger --type=subsystems --action=add');
     :os.cmd('udevadm trigger --type=devices --action=add');
     :os.cmd('udevadm settle --timeout=30');
+
+    System.put_env("QTWEBENGINE_CHROMIUM_FLAGS", "--disable-gpu")
   end
 
 end
