@@ -93,7 +93,7 @@ defmodule KioskSystemRpi3.MixProject do
       "fwup-revert.conf",
       "fwup.conf",
       "LICENSE",
-      "linux-4.14.defconfig",
+      "linux-4.19.defconfig",
       "logo_custom_clut224.ppm",
       "mix.exs",
       "nerves_defconfig",

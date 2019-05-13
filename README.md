@@ -12,7 +12,7 @@ This is the base Nerves System configuration for the Raspberry Pi 3 Model B.
 | CPU                  | 1.2 GHz quad-core ARMv8         |
 | Memory               | 1 GB DRAM                       |
 | Storage              | MicroSD                         |
-| Linux kernel         | 4.14 w/ Raspberry Pi patches    |
+| Linux kernel         | 4.19 w/ Raspberry Pi patches    |
 | IEx terminal         | ttyS0                           |
 | GPIO, I2C, SPI       | Yes - Elixir ALE                |
 | ADC                  | No                              |
@@ -26,7 +26,7 @@ This is the base Nerves System configuration for the Raspberry Pi 3 Model B.
 ## Using
 
 The most common way of using this Nerves System is create a project with `mix
-nerves.new` and to export `MIX_TARGET=rpi3`. 
+nerves.new` and to export `MIX_TARGET=rpi3`.
 
 Then, change the rpi3 system dependency to
 `{:kiosk_system_rpi3, "~> 1.0"}`
