@@ -1,5 +1,7 @@
 %{
-  "distillery": {:hex, :distillery, "1.5.2", "eec18b2d37b55b0bcb670cf2bcf64228ed38ce8b046bb30a9b636a6f5a4c0080", [:mix], [], "hexpm"},
-  "nerves": {:hex, :nerves, "0.11.0", "631693062f2fdad92b2f9d34ac7c230bbda985276b5cd99e6beff7c1a0545326", [:mix], [{:distillery, "~> 1.4", [hex: :distillery, repo: "hexpm", optional: false]}], "hexpm"},
-  "ring_logger": {:hex, :ring_logger, "0.4.0", "d58b2d9be6350d291fde90c734dcd56cb50b9be7cae4868163088db84a499e92", [:mix], [], "hexpm"},
+  "artificery": {:hex, :artificery, "0.4.1", "90b1fcedb9034853b36dbea2174f9fc1172bd50b0686a723178103def5c9c1c8", [:mix], [], "hexpm"},
+  "distillery": {:hex, :distillery, "2.0.12", "6e78fe042df82610ac3fa50bd7d2d8190ad287d120d3cd1682d83a44e8b34dfb", [:mix], [{:artificery, "~> 0.2", [hex: :artificery, repo: "hexpm", optional: false]}], "hexpm"},
+  "nerves": {:hex, :nerves, "1.4.4", "7d2d6c0129d541e12ed12117ae059e7db8849faaefc4b4d30f4af55ba6f8d089", [:mix], [{:distillery, "2.0.12", [hex: :distillery, repo: "hexpm", optional: false]}, {:jason, "~> 1.0", [hex: :jason, repo: "hexpm", optional: true]}], "hexpm"},
+  "ring_logger": {:hex, :ring_logger, "0.7.0", "37c748addaaaf35bcbe5a9e0506019bce9a56ef75e3178857ddc9390321b3d31", [:mix], [], "hexpm"},
+  "shoehorn": {:hex, :shoehorn, "0.5.0", "da8e37dbee92454dd8e20c86953de94bdcaddb2dcda6c72cf4a3de5f52e0f322", [:mix], [{:distillery, "~> 2.0", [hex: :distillery, repo: "hexpm", optional: false]}], "hexpm"},
 }
