@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.5.0
+
+This release bumps the Linux kernel to 4.19.25. This change had an impact on how
+the WiFi regulatory database gets loaded into the kernel. Instead of building it
+into the kernel as previously done, the kernel loads it on demand. This requires
+that all WiFi drivers be built as kernel modules so that the database isn't
+loaded before the root filesystem is mounted. If you made a custom system and
+see boot errors about not being able to load the regulatory database, this is
+the problem.
+
+* Bux fixes
+  * Add TAR option `--no-same-owner` to fix errors when untarring artifacts as
+    the root user.
+* Updated dependencies
+  * [nerves_system_br v1.7.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.7.2)
+  * Linux 4.19.25 with patches from the Raspberry Pi Foundation
+* Improvements
+  * Bump C compiler options to `-O2` from `-Os`. This provides a small, but
+    measurable performance improvement (500ms at boot in a trivial project
+    tested on [nerves_system_rpi0](https://github.com/nerves-project/nerves_system_rpi0))
+
+
 ## v1.4.0
 
 This pulls in a pending patch in Buildroot to update the version of
