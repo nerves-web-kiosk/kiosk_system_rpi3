@@ -15,7 +15,7 @@ defmodule Example.Application do
   end
 
   # List all child processes to be supervised
-  def children("host") do
+  def children(:host) do
     [
       # Starts a worker by calling: Example.Worker.start_link(arg)
       # {Example.Worker, arg},
@@ -30,7 +30,7 @@ defmodule Example.Application do
     ]
   end
 
-  defp platform_init("host"), do: :ok
+  defp platform_init(:host), do: :ok
 
   defp platform_init(_target) do
     :os.cmd('udevd -d');
