@@ -47,7 +47,8 @@ config :webengine_kiosk,
   fullscreen: true,
   background_color: "black",
   progress: true,
-  sounds: false
+  sounds: false,
+  homepage: System.get_env("KIOSK_URL")
 
 # Authorize the device to receive firmware using your public key.
 # See https://hexdocs.pm/nerves_firmware_ssh/readme.html for more information
