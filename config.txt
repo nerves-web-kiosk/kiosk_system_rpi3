@@ -5,7 +5,9 @@
 #
 # Useful links:
 # https://www.raspberrypi.org/documentation/configuration/config-txt/README.md
+# https://www.raspberrypi.org/documentation/configuration/device-tree.md
 # https://github.com/raspberrypi/documentation/blob/master/configuration/device-tree.md
+# https://github.com/raspberrypi/firmware/blob/master/boot/overlays/README
 
 kernel=zImage
 
