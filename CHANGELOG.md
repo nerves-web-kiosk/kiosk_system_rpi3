@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.6.0
+
+* Updated dependencies
+  * [nerves_system_br v1.7.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.7.3)
+  * [nerves_toolchain v1.2.0](https://github.com/nerves-project/toolchains/releases/tag/v1.2.0)
+  * Erlang 22.0.2
+
 ## v1.5.0
 
 This release bumps the Linux kernel to 4.19.25. This change had an impact on how
