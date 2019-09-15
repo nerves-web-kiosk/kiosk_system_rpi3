@@ -4,8 +4,7 @@
 ##  The cookie needs to be configured prior to vm boot for
 ##  for read only filesystem.
 
-# -name example@0.0.0.0
--setcookie /Jnde0Hr143FzUp/uzr/9i8eKQ2lbtQwRqotbkWFZf8yzABEdbRtqwGB+0TOZfwB
+-setcookie <%= @release.options[:cookie] %>
 
 ## Use Ctrl-C to interrupt the current shell rather than invoking the emulator's
 ## break handler and possibly exiting the VM.
@@ -34,8 +33,11 @@
 ## Enable colors in the shell
 -elixir ansi_enabled true
 
-## Options added after -extra are interpreted as plain arguments and
-## can be retrieved using :init.get_plain_arguments().
+## Options added after -extra are interpreted as plain arguments and can be
+## retrieved using :init.get_plain_arguments(). Options before the "--" are
+## interpreted by Elixir and anything afterwards is left around for other IEx
+## and user applications.
 -extra --no-halt
 --
 --dot-iex /etc/iex.exs
+
