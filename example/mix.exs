@@ -1,18 +1,22 @@
 defmodule Example.MixProject do
   use Mix.Project
 
+  @app :example
+  @version "1.0.0"
   @all_targets [:rpi3]
 
   def project do
     [
-      app: :example,
-      version: "1.0.0",
-      elixir: "~> 1.8",
-      archives: [nerves_bootstrap: "~> 1.0"],
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      app: @app,
+      version: @version,
+      elixir: "~> 1.9",
+      archives: [nerves_bootstrap: "~> 1.6"],
+      start_permanent: Mix.env() == :prod,
+      build_embedded: true,
       aliases: [loadconfig: [&bootstrap/1]],
-      deps: deps()
+      deps: deps(),
+      releases: [{@app, release()}],
+      preferred_cli_target: [run: :host, test: :host]
     ]
   end
 
@@ -25,26 +29,39 @@ defmodule Example.MixProject do
 
   # Run "mix help compile.app" to learn about applications.
   def application do
-    [mod: {Example.Application, []}, extra_applications: [:logger]]
+    [
+      mod: {Example.Application, []},
+      extra_applications: [:logger, :runtime_tools]
+    ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
       # Dependencies for all targets
-      {:nerves, "~> 1.4", runtime: false},
-      {:shoehorn, "~> 0.4"},
+      {:nerves, "~> 1.5.0", runtime: false},
+      {:shoehorn, "~> 0.6"},
       {:ring_logger, "~> 0.6"},
       {:toolshed, "~> 0.2"},
       {:webengine_kiosk, "~> 0.1"},
 
-      # Dependencies for all targets except host
+      # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
       {:nerves_init_gadget, "~> 0.4", targets: @all_targets},
       {:nerves_time, "~> 0.2", targets: @all_targets},
 
       # Dependencies for specific targets
       {:kiosk_system_rpi3, path: "../", runtime: false, targets: :rpi3}
+    ]
+  end
+
+  def release do
+    [
+      overwrite: true,
+      cookie: "#{@app}_cookie",
+      include_erts: &Nerves.Release.erts/0,
+      steps: [&Nerves.Release.init/1, :assemble],
+      strip_beams: Mix.env() == :prod
     ]
   end
 end

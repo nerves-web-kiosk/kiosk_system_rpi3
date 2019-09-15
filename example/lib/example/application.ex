@@ -33,12 +33,11 @@ defmodule Example.Application do
   defp platform_init(:host), do: :ok
 
   defp platform_init(_target) do
-    :os.cmd('udevd -d');
-    :os.cmd('udevadm trigger --type=subsystems --action=add');
-    :os.cmd('udevadm trigger --type=devices --action=add');
-    :os.cmd('udevadm settle --timeout=30');
+    :os.cmd('udevd -d')
+    :os.cmd('udevadm trigger --type=subsystems --action=add')
+    :os.cmd('udevadm trigger --type=devices --action=add')
+    :os.cmd('udevadm settle --timeout=30')
 
     System.put_env("QTWEBENGINE_CHROMIUM_FLAGS", "--disable-gpu")
   end
-
 end
