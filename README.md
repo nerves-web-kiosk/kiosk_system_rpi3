@@ -41,13 +41,6 @@ systems](https://hexdocs.pm/nerves/systems.html#customizing-your-own-nerves-syst
 
 See the [example project](https://github.com/LeToteTeam/kiosk_system_rpi3/tree/master/example) for more info
 
-
-## Building
-
-Building this image require running under docker.
-If you are compiling locally, your instance of docker will need to have at least
-8gb of ram assigned to it.
-
 ## Built-in WiFi Firmware
 
 WiFi modules almost always require proprietary firmware to be loaded for them to work. The
