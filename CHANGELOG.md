@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.7.0
+
+* Updated dependencies
+  * [nerves_system_br v1.9.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.9.2)
+  * Qt 5.13.0
+  * Erlang 22.0.7
+
 ## v1.6.0
 
 * Updated dependencies
