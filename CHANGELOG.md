@@ -1,6 +1,19 @@
 # Changelog
 
+## v1.9.0
+
+This release updates gcc from version 8.3.0 to 9.2.0 and includes various
+updates to the C runtime. See https://gcc.gnu.org/ for the many changes in the
+gcc 9.x releases. See the nerves_toolchain release notes for more information.
+
+* Updated dependencies
+  * [nerves_toolchain v1.3.0](https://github.com/nerves-project/toolchains/releases/tag/v1.3.0)
+  * [nerves_system_br v1.10.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.10.3)
+  * Erlang/OTP 22.2.6
+  * Qt 5.14.1
+
 ## v1.8.0
+
 * Updated dependencies
   * [nerves_system_br v1.10.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.10.0)
   * Erlang 22.1.8
