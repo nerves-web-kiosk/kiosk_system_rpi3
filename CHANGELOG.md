@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.9.1
+
+* Bug fixes
+  * Re-enable the rpi backlight driver
+
 ## v1.9.0
 
 This release updates gcc from version 8.3.0 to 9.2.0 and includes various
