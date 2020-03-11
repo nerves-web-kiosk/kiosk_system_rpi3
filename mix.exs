@@ -49,7 +49,7 @@ defmodule KioskSystemRpi3.MixProject do
 
   defp deps do
     [
-      {:nerves, "~> 1.5.0", runtime: false},
+      {:nerves, "~> 1.5.4 or ~> 1.6.0", runtime: false},
       {:nerves_system_br, "1.10.3", runtime: false},
       {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 1.3.0", runtime: false},
       {:nerves_system_linter, "~> 0.3.0", only: [:dev, :test], runtime: false},
