@@ -11,22 +11,32 @@ defmodule Example.Application do
     platform_init(@target)
 
     opts = [strategy: :one_for_one, name: Example.Supervisor]
-    Supervisor.start_link(children(@target), opts)
+    webengine_opts = Application.get_all_env(:webengine_kiosk)
+
+    children =
+      [
+        # Children for all targets
+        # Starts a worker by calling: Example.Worker.start_link(arg)
+        {WebengineKiosk, {webengine_opts, name: Display}}
+      ] ++ children(target())
+
+    Supervisor.start_link(children, opts)
   end
 
   # List all child processes to be supervised
   def children(:host) do
     [
+      # Children that only run on the host
       # Starts a worker by calling: Example.Worker.start_link(arg)
       # {Example.Worker, arg},
     ]
   end
 
   def children(_target) do
-    webengine_opts = Application.get_all_env(:webengine_kiosk)
-
     [
-      {WebengineKiosk, {webengine_opts, name: Display}}
+      # Children for all targets except host
+      # Starts a worker by calling: Example.Worker.start_link(arg)
+      # {Example.Worker, arg},
     ]
   end
 
@@ -39,5 +49,9 @@ defmodule Example.Application do
     :os.cmd('udevadm settle --timeout=30')
 
     System.put_env("QTWEBENGINE_CHROMIUM_FLAGS", "--disable-gpu")
+  end
+
+  def target() do
+    Application.get_env(:example, :target)
   end
 end
