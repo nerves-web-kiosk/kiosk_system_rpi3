@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.10.0
+
+* Updated dependencies
+  * [nerves_system_br v1.11.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.11.0)
+  * linux 4.19.97 (raspberrypi-kernel_1.20200212-1 tag)
+  * Erlang 22.3
+
 ## v1.9.1
 
 * Bug fixes
