@@ -15,7 +15,6 @@ workflows:
       - build-tools/build-system:
           exec:
             <<: *exec
-          resource-class: xlarge
           context: org-global
           filters:
             tags:
