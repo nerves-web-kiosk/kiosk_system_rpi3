@@ -35,3 +35,9 @@ dtoverlay=ramoops
 
 # Enable the UART (/dev/ttyS0) on the RPi3.
 enable_uart=1
+
+display_rotate=1
+hdmi_cvt=800 480 50 6 1 0 0
+hdmi_group=2
+hdmi_mode=87
+dtoverlay=sdio-sdhost

@@ -36,7 +36,7 @@ defmodule KioskSystemRpi3.MixProject do
     [
       type: :system,
       artifact_sites: [
-        {:github_releases, "letoteteam/#{@app}"}
+        {:github_releases, "brianberlin/#{@app}"}
       ],
       build_runner_opts: build_runner_opts(),
       platform: Nerves.System.BR,
@@ -67,7 +67,7 @@ defmodule KioskSystemRpi3.MixProject do
     [
       files: package_files(),
       licenses: ["Apache 2.0"],
-      links: %{"GitHub" => "https://github.com/letoteteam/#{@app}"}
+      links: %{"GitHub" => "https://github.com/brianberlin/#{@app}"}
     ]
   end
 
