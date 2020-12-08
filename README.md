@@ -20,7 +20,7 @@ This is the base Nerves System configuration for the Raspberry Pi 3 Model B.
 | UART                 | 1 available - ttyS0             |
 | Camera               | Yes - via rpi-userland          |
 | Ethernet             | Yes                             |
-| WiFi                 | Yes - Nerves.InterimWiFi        |
+| WiFi                 | Yes - [VintageNet](https://hex.pm/packages/vintage_net)        |
 | Bluetooth            | Not yet                         |
 
 ## Using
