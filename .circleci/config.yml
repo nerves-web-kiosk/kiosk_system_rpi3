@@ -1,7 +1,7 @@
 exec: &exec
   name: build-tools/nerves-system-br
-  version: 1.11.1
-  elixir: 1.9.4-otp-22
+  version: 1.13.5
+  elixir: 1.10.4-otp-23
 
 version: 2.1
 
@@ -15,7 +15,6 @@ workflows:
       - build-tools/build-system:
           exec:
             <<: *exec
-          resource-class: xlarge
           context: org-global
           filters:
             tags:
