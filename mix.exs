@@ -75,7 +75,6 @@ defmodule KioskSystemRpi3.MixProject do
   defp package_files do
     [
       "fwup_include",
-      "patches",
       "rootfs_overlay",
       "CHANGELOG.md",
       "cmdline.txt",
@@ -84,8 +83,7 @@ defmodule KioskSystemRpi3.MixProject do
       "fwup-revert.conf",
       "fwup.conf",
       "LICENSE",
-      "linux-4.19.defconfig",
-      "logo_custom_clut224.ppm",
+      "linux-5.4.defconfig",
       "mix.exs",
       "nerves_defconfig",
       "post-build.sh",
