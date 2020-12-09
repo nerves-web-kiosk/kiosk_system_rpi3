@@ -48,7 +48,7 @@ defmodule Example.Application do
     :os.cmd('udevadm trigger --type=devices --action=add')
     :os.cmd('udevadm settle --timeout=30')
 
-    System.put_env("QTWEBENGINE_CHROMIUM_FLAGS", "--disable-gpu")
+    System.put_env("QTWEBENGINE_CHROMIUM_FLAGS", "--disable-gpu --disable-dev-shm-usage")
   end
 
   def target() do

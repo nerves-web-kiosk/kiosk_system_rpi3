@@ -39,7 +39,7 @@ defmodule Example.MixProject do
   defp deps do
     [
       # Dependencies for all targets
-      {:nerves, "~> 1.5.0", runtime: false},
+      {:nerves, "~> 1.7.0", runtime: false},
       {:shoehorn, "~> 0.6"},
       {:ring_logger, "~> 0.6"},
       {:toolshed, "~> 0.2"},
