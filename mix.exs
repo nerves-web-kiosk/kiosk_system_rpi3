@@ -97,9 +97,9 @@ defmodule KioskSystemRpi3.MixProject do
 
   defp build_runner_opts() do
     if primary_site = System.get_env("BR2_PRIMARY_SITE") do
-      [make_args: ["BR2_PRIMARY_SITE=#{primary_site}", "PARALLEL_JOBS=8"]]
+      [make_args: ["BR2_PRIMARY_SITE=#{primary_site}", "PARALLEL_JOBS=2"]]
     else
-      [make_args: ["PARALLEL_JOBS=8"]]
+      [make_args: ["PARALLEL_JOBS=2"]]
     end
   end
 
