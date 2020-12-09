@@ -15,8 +15,8 @@ config :shoehorn,
 config :nerves_runtime, :kernel, use_system_registry: false
 
 # Authorize the device to receive firmware using your public key.
-# See https://hexdocs.pm/nerves_firmware_ssh/readme.html for more information
-# on configuring nerves_firmware_ssh.
+# See https://hexdocs.pm/nerves_ssh/readme.html for more information
+# on configuring nerves_ssh.
 
 keys =
   [
@@ -34,7 +34,7 @@ if keys == [],
     See your project's config.exs for this error message.
     """)
 
-config :nerves_firmware_ssh,
+config :nerves_ssh,
   authorized_keys: Enum.map(keys, &File.read!/1)
 
 # Configure the network using vintage_net
