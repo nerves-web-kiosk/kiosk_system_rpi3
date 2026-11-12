@@ -1,0 +1,2 @@
+# See cmdline-a.txt
+console=serial0,115200 root=/dev/mmcblk0p6 rootwait quiet vt.global_cursor_default=0 cgroup_enable=memory cgroup_memory=1

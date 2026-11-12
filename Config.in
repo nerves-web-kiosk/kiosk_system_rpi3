@@ -1,8 +1,0 @@
-# Add project-specific packages for Buildroot here
-#
-# If these are non-proprietary, please consider contributing them back to
-# Nerves or Buildroot.
-
-source "$NERVES_DEFCONFIG_DIR/package/noto-cjk/Config.in"
-source "$NERVES_DEFCONFIG_DIR/package/noto-emoji/Config.in"
-source "$NERVES_DEFCONFIG_DIR/package/noto-fonts/Config.in"
