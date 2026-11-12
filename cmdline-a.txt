@@ -1,0 +1,10 @@
+# NOTES:
+# 1. serial0 is magically replaced to the right thing by the RPi bootloader.
+#    /dev/serial0 won't exist unless you make it, so don't expected it in
+#    userland.
+# 2. quiet skips printing kernel messages to the output and significantly
+#    shortens boot time
+# 3. The RPi bootloader adds `cgroup_disable=memory`, so add
+#    `cgroup_enable=memory cgroup_memory=1` to turn it back on. This uses ~1%
+#    DRAM, so delete if unused.
+console=serial0,115200 root=/dev/mmcblk0p5 rootwait quiet vt.global_cursor_default=0 cgroup_enable=memory cgroup_memory=1

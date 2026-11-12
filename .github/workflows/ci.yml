@@ -1,0 +1,58 @@
+# SPDX-FileCopyrightText: None
+# SPDX-License-Identifier: CC0-1.0
+
+name: CI
+
+on: [push]
+
+env:
+  OTP_VERSION: 29.1.2
+  ELIXIR_VERSION: 1.20.5-otp-29
+  NERVES_BOOTSTRAP_VERSION: 1.17.4
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  get-br-dependencies:
+    runs-on: blacksmith-4vcpu-ubuntu-2404
+    steps:
+      - uses: actions/checkout@v7
+      - uses: nerves-project/actions-nerves2-package@v0
+      - name: Get Buildroot Dependencies
+        uses: ./.actions/get-br-dependencies
+        with:
+          otp-version: ${{ env.OTP_VERSION }}
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+          nerves-bootstrap-version: ${{ env.NERVES_BOOTSTRAP_VERSION }}
+          push-to-download-site: true
+          download-site-bucket-uri: ${{ vars.DOWNLOAD_SITE_BUCKET_URI }}
+          aws-role: ${{ secrets.AWS_ROLE }}
+          aws-region: ${{ vars.AWS_REGION }}
+  build-package:
+    needs: [get-br-dependencies]
+    runs-on: blacksmith-4vcpu-ubuntu-2404
+    steps:
+      - uses: actions/checkout@v7
+      - uses: nerves-project/actions-nerves2-package@v0
+      - name: Build Nerves package
+        uses: ./.actions/build-package
+        with:
+          enable-ccache: true
+          otp-version: ${{ env.OTP_VERSION }}
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+          nerves-bootstrap-version: ${{ env.NERVES_BOOTSTRAP_VERSION }}
+  deploy-package:
+    needs: [build-package]
+    if: github.ref_type == 'tag'
+    runs-on: blacksmith-4vcpu-ubuntu-2404
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: nerves-project/actions-nerves2-package@v0
+      - name: Deploy Nerves package
+        uses: ./.actions/deploy-package
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

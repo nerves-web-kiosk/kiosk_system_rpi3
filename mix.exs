@@ -3,6 +3,7 @@ defmodule KioskSystemRpi3.MixProject do
 
   @github_organization "nerves-web-kiosk"
   @app :kiosk_system_rpi3
+  @source_url "https://github.com/#{@github_organization}/#{@app}"
   @version Path.join(__DIR__, "VERSION")
            |> File.read!()
            |> String.trim()
@@ -11,15 +12,17 @@ defmodule KioskSystemRpi3.MixProject do
     [
       app: @app,
       version: @version,
-      elixir: "~> 1.8",
-      archives: [nerves_bootstrap: "~> 1.0"],
+      # Because we're using OTP 27, we need to enforce Elixir 1.17 or later.
+      elixir: "~> 1.17",
       compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
       package: package(),
       deps: deps(),
-      aliases: [loadconfig: [&bootstrap/1]],
-      docs: [extras: ["README.md"], main: "readme"]
+      aliases: [
+        generate_fwup_conf: &generate_fwup_conf/1
+      ],
+      docs: docs()
     ]
   end
 
@@ -27,10 +30,11 @@ defmodule KioskSystemRpi3.MixProject do
     []
   end
 
-  defp bootstrap(args) do
-    set_target()
-    Application.start(:nerves_bootstrap)
-    Mix.Task.run("loadconfig", args)
+  def cli do
+    [
+      preferred_envs: %{docs: :docs, "hex.build": :docs, "hex.publish": :docs},
+      default_target: :target
+    ]
   end
 
   defp nerves_package do
@@ -39,75 +43,123 @@ defmodule KioskSystemRpi3.MixProject do
       artifact_sites: [
         {:github_releases, "#{@github_organization}/#{@app}"}
       ],
+      artifact_checksum: true,
       build_runner_opts: build_runner_opts(),
       platform: Nerves.System.BR,
       platform_config: [
         defconfig: "nerves_defconfig"
       ],
-      checksum: package_files()
+      # The :env key is an optional experimental feature for adding environment
+      # variables to the crosscompile environment. These are intended for
+      # llvm-based tooling that may need more precise processor information.
+      env: [
+        {"TARGET_ARCH", "arm"},
+        {"TARGET_CPU", "cortex_a53"},
+        {"TARGET_OS", "linux"},
+        {"TARGET_ABI", "gnueabihf"},
+        {"TARGET_GCC_FLAGS",
+         "-mabi=aapcs-linux -mfpu=neon-fp-armv8 -marm -fstack-protector-strong -mfloat-abi=hard -mcpu=cortex-a53 -fPIE -pie -Wl,-z,now -Wl,-z,relro"}
+      ],
+      checksum: source_finger_print_files()
     ]
   end
 
   defp deps do
     [
-      {:nerves, "~> 1.5.4 or ~> 1.6.0 or ~> 1.7.0", runtime: false},
-      {:nerves_system_br, "1.13.5", runtime: false},
-      {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 1.3.0", runtime: false},
-      {:nerves_system_linter, "~> 0.3.0", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.18", only: [:dev, :test], runtime: false}
+      {:nerves, "~> 1.11 or ~> 2.0 or ~> 2.0.0-dev", runtime: false},
+      {:nerves_system_br, "1.35.3", runtime: false},
+      {:nerves_toolchain_armv7_nerves_linux_gnueabihf, "~> 15.3.0", runtime: false},
+      {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.22", only: :docs, runtime: false}
     ]
   end
 
   defp description do
     """
-    Nerves QtWebEngine Kiosk System - Raspberry Pi 3 B and B+
+    Kiosk System - Raspberry Pi 3B, 3B+, Zero 2W
     """
+  end
+
+  defp docs do
+    [
+      extras: ["README.md", "CHANGELOG.md"],
+      main: "readme",
+      assets: %{"assets" => "./assets"},
+      source_ref: "v#{@version}",
+      source_url: @source_url,
+      skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
+    ]
   end
 
   defp package do
     [
       files: package_files(),
-      licenses: ["Apache 2.0"],
-      links: %{"GitHub" => "https://github.com/#{@github_organization}/#{@app}"}
+      licenses: ["GPL-2.0-only", "GPL-2.0-or-later"],
+      links: %{
+        "GitHub" => @source_url,
+        "REUSE Compliance" =>
+          "https://api.reuse.software/info/github.com/nerves-web-kiosk/kiosk_system_rpi3"
+      }
+    ]
+  end
+
+  defp source_finger_print_files do
+    [
+      "config/config.exs",
+      "fwup_include",
+      "rootfs_overlay",
+      "cmdline-a.txt",
+      "cmdline-b.txt",
+      "config.txt",
+      "fwup-ops.conf",
+      "fwup.conf.eex",
+      "linux-6.18.defconfig",
+      "mix.exs",
+      "nerves_defconfig",
+      "post-build.sh",
+      "post-createfs.sh",
+      "ramoops-overlay.dts"
     ]
   end
 
   defp package_files do
     [
-      "fwup_include",
-      "rootfs_overlay",
       "CHANGELOG.md",
-      "cmdline.txt",
-      "Config.in",
-      "config.txt",
-      "fwup-revert.conf",
-      "fwup.conf",
-      "LICENSE",
-      "linux-5.4.defconfig",
-      "mix.exs",
-      "nerves_defconfig",
-      "post-build.sh",
-      "post-createfs.sh",
-      "ramoops.dts",
+      "checksum.exs",
+      "LICENSES/*",
       "README.md",
-      "users_table.txt",
+      "REUSE.toml",
       "VERSION"
-    ]
+    ] ++ source_finger_print_files()
   end
 
   defp build_runner_opts() do
-    if primary_site = System.get_env("BR2_PRIMARY_SITE") do
-      [make_args: ["BR2_PRIMARY_SITE=#{primary_site}", "PARALLEL_JOBS=2"]]
-    else
-      [make_args: ["PARALLEL_JOBS=2"]]
+    # Download source files first to get download errors right away.
+    [make_args: primary_site() ++ parallel_jobs() ++ ["source", "all", "legal-info"]]
+  end
+
+  defp primary_site() do
+    case System.get_env("BR2_PRIMARY_SITE") do
+      nil -> []
+      primary_site -> ["BR2_PRIMARY_SITE=#{primary_site}"]
     end
   end
 
-  defp set_target() do
-    if function_exported?(Mix, :target, 1) do
-      apply(Mix, :target, [:target])
-    else
-      System.put_env("MIX_TARGET", "target")
+  defp parallel_jobs do
+    case System.get_env("PARALLEL_JOBS") do
+      nil -> []
+      count -> ["PARALLEL_JOBS=#{count}"]
     end
+  end
+
+  defp generate_fwup_conf(_args) do
+    template_path = Path.join(__DIR__, "fwup.conf.eex")
+    output_path = Path.join(__DIR__, "fwup.conf")
+
+    Mix.shell().info("Generating fwup.conf")
+
+    content = EEx.eval_file(template_path)
+    File.write!(output_path, content)
+    Mix.shell().info("Successfully generated #{output_path}")
   end
 end
